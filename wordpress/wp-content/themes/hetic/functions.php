@@ -1,7 +1,8 @@
 <?php
 
-function bootstrap_stylesheet(){
-  wp_enqueue_style("bootstrap", "https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css");
+function bootstrap_stylesheet() {
+  wp_enqueue_style("bootstrap_css", "https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css");
+  wp_enqueue_style("bootstrap_js", "https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js", [], false, true);
 }
 
 function wpbootstrap_after_setup_theme() {
@@ -25,13 +26,13 @@ function wpbootstrap_sidebar() {
                    ]);
 }
 
-//prise en compte de ma nouvelle feuille de style
+//prise en compte de ma nouvelle feuille de style pour page de connexion
 function my_login_stylesheet() {
-  wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri() . '/login/style.css' );
+  wp_enqueue_style('custom-login', get_stylesheet_directory_uri() . '/login/style.css');
 }
 
 
 add_action('widgets_init', 'wpbootstrap_sidebar');
 add_action('after_setup_theme', 'wpbootstrap_after_setup_theme');
-add_action( 'login_enqueue_scripts', 'my_login_stylesheet' );
-add_action( 'wp_enqueue_scripts', 'bootstrap_stylesheet');
+add_action('login_enqueue_scripts', 'my_login_stylesheet');
+add_action('wp_enqueue_scripts', 'bootstrap_stylesheet');
