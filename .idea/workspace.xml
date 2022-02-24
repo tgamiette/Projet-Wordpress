@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1bf02715-7586-407a-9102-421f14c8691b" name="Changes" comment="post">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="1bf02715-7586-407a-9102-421f14c8691b" name="Changes" comment="first commit">
+      <change beforePath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/comments.php" beforeDir="false" afterPath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/comments.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/functions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/single/Singlepost.php" beforeDir="false" afterPath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/single/Singlepost.php" afterDir="false" />
     </list>
@@ -20,6 +20,11 @@
     <drupalPath />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">

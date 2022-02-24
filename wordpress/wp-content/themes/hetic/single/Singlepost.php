@@ -7,6 +7,9 @@
                 <p class="card-text"><?php the_content(); ?></p>
                 <p class="card-text"><small class="text-muted"> Ecrit le :<?php the_date(); ?> </small></p>
                 <a href="<?php the_permalink(); ?>" class="btn btn-primary">Lire la suite</a>
+                <?php if (is_singular()) : if (comments_open()) : comments_template();
+                    endif;
+                endif; ?>
             </div>
         </div>
     <?php endwhile; ?>
