@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1bf02715-7586-407a-9102-421f14c8691b" name="Changes" comment="first commit" />
+    <list default="true" id="1bf02715-7586-407a-9102-421f14c8691b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/functions.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +44,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1645701668088</updated>
-      <workItem from="1645701669850" duration="5285000" />
+      <workItem from="1645701669850" duration="5395000" />
+      <workItem from="1645707660945" duration="1005000" />
     </task>
     <servers />
   </component>
