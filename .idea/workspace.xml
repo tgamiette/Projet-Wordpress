@@ -1,22 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1bf02715-7586-407a-9102-421f14c8691b" name="Changes" comment="add bootstrap stylesheet">
+    <list default="true" id="1bf02715-7586-407a-9102-421f14c8691b" name="Changes" comment="bootstrapd">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/footer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordpress/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/wordpress/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/body.php" beforeDir="false" afterPath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/body.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/functions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/single.php" beforeDir="false" afterPath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/single.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
-    <execution />
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <execution>
+      <interpreter composer="composer" />
+    </execution>
+  </component>
+  <component name="DrupalConfiguration">
+    <drupalPath />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="JoomlaConfiguration">
+    <joomlaConfigPath />
+    <joomlaPath />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -35,7 +55,7 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="advanced.settings" />
+    <property name="settings.editor.selected.configurable" value="settings.php.frameworks" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -47,7 +67,9 @@
       <option name="presentableId" value="Default" />
       <updated>1645701668088</updated>
       <workItem from="1645701669850" duration="5395000" />
-      <workItem from="1645707660945" duration="1322000" />
+      <workItem from="1645707660945" duration="6833000" />
+      <workItem from="1645714997062" duration="366000" />
+      <workItem from="1645715572685" duration="1598000" />
     </task>
     <task id="LOCAL-00001" summary="add bootstrap stylesheet">
       <created>1645708777537</created>
@@ -56,7 +78,28 @@
       <option name="project" value="LOCAL" />
       <updated>1645708777537</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add bootstrap stylesheet + clean code">
+      <created>1645709013177</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1645709013177</updated>
+    </task>
+    <task id="LOCAL-00003" summary="clean code">
+      <created>1645709744919</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1645709744919</updated>
+    </task>
+    <task id="LOCAL-00004" summary="bootstrap">
+      <created>1645710150528</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1645710150528</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -76,9 +119,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="add bootstrap stylesheet" />
-    <option name="LAST_COMMIT_MESSAGE" value="add bootstrap stylesheet" />
+    <MESSAGE value="add bootstrap stylesheet + clean code" />
+    <MESSAGE value="clean code" />
+    <MESSAGE value="bootstrap" />
+    <option name="LAST_COMMIT_MESSAGE" value="bootstrap" />
   </component>
   <component name="WordPressConfiguration" enabled="true">
     <wordpressPath>$PROJECT_DIR$/wordpress</wordpressPath>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
