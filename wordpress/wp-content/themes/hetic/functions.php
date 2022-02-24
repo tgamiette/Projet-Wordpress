@@ -1,7 +1,6 @@
 <?php
 define(SINGLE_PATH, TEMPLATEPATH . '/single');
 
-die(SINGLE_PATH);
 function bootstrap_stylesheet()
 {
   wp_enqueue_style("bootstrap_css", "https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css");
@@ -43,15 +42,9 @@ function my_login_stylesheet()
 }
 
 
-
-/*
-* Define a constant path to our single template folder
-*/
-
 /**
  * Filter the single_template with our custom function
  */
-add_filter('single_template', 'my_single_template');
 
 /**
  * Single template function which will choose our template
@@ -59,14 +52,10 @@ add_filter('single_template', 'my_single_template');
 function my_single_template($single) {
 	global $wp_query, $post;
 
-	/**
-	 * Checks for single template by category
-	 * Check by category slug and ID
-	 */
 	foreach((array)get_the_category() as $cat) :
 
 		if(file_exists(SINGLE_PATH . '/single-cat-' . $cat->slug . '.php'))
-			return SINGLE_PATH . '/single-cat-' . $cat->slug . '.php';
+			return SINGLE_PATH . '/single-cat' . $cat->slug . '.php';
 
 		elseif(file_exists(SINGLE_PATH . '/single-cat-' . $cat->term_id . '.php'))
 			return SINGLE_PATH . '/single-cat-' . $cat->term_id . '.php';
@@ -74,7 +63,11 @@ function my_single_template($single) {
 	endforeach;
 }
 
+
 add_action('widgets_init', 'wpbootstrap_sidebar');
 add_action('after_setup_theme', 'custom_setup_theme');
 add_action('login_enqueue_scripts', 'my_login_stylesheet');
 add_action('wp_enqueue_scripts', 'bootstrap_stylesheet');
+
+add_filter('single_template', 'my_single_template');
+
