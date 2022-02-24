@@ -9,8 +9,8 @@ function wpbootstrap_after_setup_theme() {
 //  require_once get_template_directory() . 'class-wp-bootstrap-navwalker.php';
 
 }
-
 add_action('after_setup_theme', 'wpbootstrap_after_setup_theme');
+
 
 // On ajoute une sidebar
 function wpbootstrap_sidebar() {
@@ -26,3 +26,13 @@ function wpbootstrap_sidebar() {
 }
 
 add_action('widgets_init', 'wpbootstrap_sidebar');
+
+
+
+
+
+//prise en compte de ma nouvelle feuille de style
+function my_login_stylesheet() {
+  wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri() . '/login/style.css' );
+}
+add_action( 'login_enqueue_scripts', 'my_login_stylesheet' );
