@@ -2,6 +2,7 @@
 $query= new WP_Query([
   "post_type"=>"event",
   "meta_key"=>"",
+  "is_valid"=>"",
   "meta_type"=>"NUMERIC",
   "orderby"=>""
                      ]);
