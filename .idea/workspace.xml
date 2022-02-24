@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1bf02715-7586-407a-9102-421f14c8691b" name="Changes" comment="bootstrapd">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="1bf02715-7586-407a-9102-421f14c8691b" name="Changes" comment="post">
+      <change afterPath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/Single.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordpress/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/wordpress/.htaccess" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/body.php" beforeDir="false" afterPath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/body.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/Single-post.php" beforeDir="false" afterPath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/Singlepost.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordpress/wp-content/themes/hetic/single.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,12 +49,17 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/wordpress/wp-content/themes/hetic" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.php.frameworks" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/wordpress/wp-content/themes/hetic" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -69,7 +72,7 @@
       <workItem from="1645701669850" duration="5395000" />
       <workItem from="1645707660945" duration="6833000" />
       <workItem from="1645714997062" duration="366000" />
-      <workItem from="1645715572685" duration="1598000" />
+      <workItem from="1645715572685" duration="2783000" />
     </task>
     <task id="LOCAL-00001" summary="add bootstrap stylesheet">
       <created>1645708777537</created>
@@ -99,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645710150528</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="post">
+      <created>1645719074035</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1645719074035</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,7 +132,8 @@
     <MESSAGE value="add bootstrap stylesheet + clean code" />
     <MESSAGE value="clean code" />
     <MESSAGE value="bootstrap" />
-    <option name="LAST_COMMIT_MESSAGE" value="bootstrap" />
+    <MESSAGE value="post" />
+    <option name="LAST_COMMIT_MESSAGE" value="post" />
   </component>
   <component name="WordPressConfiguration" enabled="true">
     <wordpressPath>$PROJECT_DIR$/wordpress</wordpressPath>
