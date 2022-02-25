@@ -1,5 +1,5 @@
 <?php
-define(SINGLE_PATH, TEMPLATEPATH . '/single');
+define(SINGLE_PATH, TEMPLATEPATH . '/template');
 
 function bootstrap_stylesheet(){
     wp_enqueue_style("bootstrap_css", "https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css");
