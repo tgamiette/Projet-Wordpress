@@ -100,39 +100,43 @@ class Wp_addPost
   }
 
   public static function handleForm(){
-    if(current_user_can('manage_logement')
-       && wp_verify_nonce($_POST['hcf_logement_nonce'], $_POST['hcf_logement_post'])){
+    // if(current_user_can('manage_logement')){
 
-      $post_args = array(
-        'post_title' => $_POST['hcf-title'],
-        'post_content' => $_POST['hcf-description'],
-        'post_type' => 'logement',
-        'post_status' => 'publish',
-        'post_author' => get_current_user_id(),
-        'tax_input' => [
-          'style' => [$_POST['logement_style']]
-        ],
-        'meta_input' => [
-            'hcf-description' => $_POST['hcf-description'],
-            'hcf-logement_type' => $_POST['hcf-logement_type'],
-            'hcf-espace' => $_POST['hcf-espace'],
-            'hcf-nb_lit' => $_POST['hcf-nb_lit'],
-            'hcf-nb_sdb' => $_POST['hcf-nb_sdb'],
-            'hcf-nb_pers' => $_POST['hcf-nb_pers'],
-            'hcf-adresse_logement' => $_POST['hcf-adresse_logement'],
-            'hcf-ville_logement' => $_POST['hcf-ville_logement'],
-            'hcf-prix_logement' => $_POST['hcf-prix_logement'],
-            'hcf-proprio_type' => $_POST['hcf-proprio_type']
-        ]
-      );
+      //if(wp_verify_nonce($_REQUEST['hcf_logement_nonce'], 'hcf_logement_post')){
 
-      $postId = wp_insert_post($post_args);
-      $attachment_id = media_handle_upload('hcf-picture', $postId);
-      set_post_thumbnail( $postId, $attachment_id);
-      wp_redirect(home_url());
+         $post_args = array(
+           'post_title' => $_POST['hcf-title'],
+           'post_content' => $_POST['hcf-description'],
+           'post_type' => 'logement',
+           'post_status' => 'publish',
+           'post_author' => get_current_user_id(),
+           'tax_input' => [
+             'style' => [$_POST['logement_style']]
+           ],
+           'meta_input' => [
+               'hcf-description' => $_POST['hcf-description'],
+               'hcf-logement_type' => $_POST['hcf-logement_type'],
+               'hcf-espace' => $_POST['hcf-espace'],
+               'hcf-nb_lit' => $_POST['hcf-nb_lit'],
+               'hcf-nb_sdb' => $_POST['hcf-nb_sdb'],
+               'hcf-nb_pers' => $_POST['hcf-nb_pers'],
+               'hcf-adresse_logement' => $_POST['hcf-adresse_logement'],
+               'hcf-ville_logement' => $_POST['hcf-ville_logement'],
+               'hcf-prix_logement' => $_POST['hcf-prix_logement'],
+               'hcf-proprio_type' => $_POST['hcf-proprio_type']
+           ]
+         );
 
+         $postId = wp_insert_post($post_args);
+         $attachment_id = media_handle_upload('hcf-picture', $postId);
+         set_post_thumbnail( $postId, $attachment_id);
+         wp_redirect(home_url('?p='. $postId));
+
+      // } else {
+      //   var_dump('Une erreur de nonce s\'est produite!');
+      // }
     }
-  }
+  //}
 }
 
 

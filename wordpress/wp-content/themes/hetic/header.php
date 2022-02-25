@@ -16,6 +16,13 @@
     <div class="row flex-nowrap justify-content-between align-items-center">
       <div class="col-12 text-center">
         <a class="blog-header-logo text-dark" href="<?php bloginfo('url'); ?>"><?php bloginfo('name') ?></a>
+        <?php if(is_user_logged_in()){ ?>
+          <a class="btn btn-warning" href="<?= home_url('/ajout-logement')?> ">Ajouter un logement</a>
+        <?php
+        }else {
+          return null;
+        }
+        ?>
       </div>
     </div>
   </header>
