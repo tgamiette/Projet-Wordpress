@@ -20,16 +20,10 @@ if($query->have_posts()){
                 <img src="<?php the_post_thumbnail_url(); ?>" class="card-img-top" alt="...">
                 <div class="card-body">
 
-                    <?php if (get_post_meta(get_the_ID(), 'wpheticSponso', true)) : ?>
-                        <div class="alert alert-primary" role="alert">
-                            Contenu Soponso
-                        </div>
-                    <?php endif; ?>
-
                     <p><small> Logement: <?= get_post_meta( get_the_ID(), 'hcf-logement_type', true ) ?> • <?= get_post_meta( get_the_ID(), 'hcf-proprio_type', true ) ?> • <?= get_post_meta( get_the_ID(), 'hcf-ville_logement', true ) ?></small></p>
                     <h5 class="card-title"><?php the_title(); ?></h5>
 
-                    <p><small><?= get_post_meta( get_the_ID(), 'hcf-nb_pers', true ) ?> voyageurs • <?= get_post_meta( get_the_ID(), 'hcf-espace', true ) ?> • <?= get_post_meta( get_the_ID(), 'hcf-nb_lit', true ) ?> • <?= get_post_meta( get_the_ID(), 'hcf-nb_sdb', true ) ?></small></p>
+                    <p><small><?= get_post_meta( get_the_ID(), 'hcf-nb_pers', true ) ?> voyageurs • <?= get_post_meta( get_the_ID(), 'hcf-espace', true ) ?> • <?= get_post_meta( get_the_ID(), 'hcf-nb_lit', true ) ?> lit(s) • <?= get_post_meta( get_the_ID(), 'hcf-nb_sdb', true ) ?> salle de bain</small></p>
 
                     <p class="card-text"><?php the_content(); ?></p>
                     <a href="<?php the_permalink(); ?>" class="btn btn-primary">Voir le logement</a>
