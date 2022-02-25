@@ -9,6 +9,7 @@
   <title><?php wp_title(); ?></title>
   <?php wp_head(); ?>
 </head>
+
 <body <?php body_class(); ?>>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
