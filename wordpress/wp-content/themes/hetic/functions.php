@@ -36,24 +36,9 @@ function my_login_stylesheet(){
     wp_enqueue_style('custom-login', get_stylesheet_directory_uri() . '/login/style.css');
 }
 
-/**
- * Single template function which will choose our template
- */
-function my_single_template($single){
-    global $wp_query, $post;
-
-    foreach ((array) get_the_category() as $cat) :
-
-        if (file_exists(SINGLE_PATH . '/single-cat-' . $cat->slug . '.php'))
-            return SINGLE_PATH . '/single-cat' . $cat->slug . '.php';
-
-        elseif (file_exists(SINGLE_PATH . '/single-cat-' . $cat->term_id . '.php'))
-            return SINGLE_PATH . '/single-cat-' . $cat->term_id . '.php';
-        else
-            return SINGLE_PATH . '/single-post.php';
-
-
-    endforeach;
+function generateForm(){
+    ob_start();
+    wp_enqueue_style('custom-login', get_stylesheet_directory_uri() . '/login/style.css');
 }
 
 //Ajout de widget "Logement"
@@ -145,9 +130,25 @@ add_action('widgets_init', 'wpbootstrap_sidebar');
 add_action('after_setup_theme', 'custom_setup_theme');
 add_action('login_enqueue_scripts', 'my_login_stylesheet');
 add_action('wp_enqueue_scripts', 'bootstrap_stylesheet');
-add_filter('single_template', 'my_single_template');
+//add_filter('single_template', 'my_single_template');
 add_action('widgets_init', 'wpbootstrap_sidebar');
 add_action('init', 'cptui_register_my_cpts_logement');
 add_action('save_post', 'hcf_save_meta_box');
+add_action('"admin_post_nopriv_wpinscription_form', function (){
+    if (!wp_verify_nonce($_POST['random_nonce'], 'random_action')){
+        die("erreur non invalide ");
+    }
+    $email    = $_POST['email'];
+    $username = $_POST['username'];
+    $name     = $_POST['name'];
+    $lastName = $_POST['lastname'];
+    $password = $_POST['password'];
+    wp_insert_user(['user_login' => username,
+                    'user_pass'  => $password,
+                    'user_mail'  => $email,
+                    'role'=> 'ABONNE']);
+    wp_redirect($_POST['_wp_http_refer'] . "message=" . $password);
+    exit();
+});
 
 
