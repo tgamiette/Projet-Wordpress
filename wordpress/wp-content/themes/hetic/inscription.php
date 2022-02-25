@@ -28,13 +28,13 @@
             <legend class="col-form-label col-sm-2 pt-0">Vous êtes un :</legend>
             <div class="col-sm-10">
                 <div class="form-check">
-                    <input name="type" class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="1" checked>
+                    <input name="role" class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="subscriber" checked>
                     <label class="form-check-label" for="gridRadios1">
                         Particulier
                     </label>
                 </div>
                 <div class="form-check">
-                    <input name="type" class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="2">
+                    <input name="role" class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="editor">
                     <label class="form-check-label" for="gridRadios2">
                         Loueur
                     </label>

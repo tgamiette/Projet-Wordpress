@@ -1,5 +1,5 @@
 <?php
-define(SINGLE_PATH, TEMPLATEPATH . '/template');
+//define(SINGLE_PATH, TEMPLATEPATH . '/template');
 
 function bootstrap_stylesheet(){
     wp_enqueue_style("bootstrap_css", "https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css");
@@ -16,28 +16,27 @@ function custom_setup_theme(){
     register_nav_menu('header_menu', "Menu du header");
     // On ajoute le support du html5 pour les listes de commentaires
     add_theme_support('html5', array('comment-list'));
+    $user = wp_get_current_user();
 
-    //add_theme_support('is_validate');
+
+    if (current_user_can('subscriber') || current_user_can('hetic_user')){
+        show_admin_bar(false);
+    }
 }
 
 // On ajoute une sidebar
-function wpbootstrap_sidebar(){
-    register_sidebar(['name'          => "Sidebar principale",
-                      'id'            => 'main-sidebar',
-                      'description'   => "La sidebar principale",
-                      'before_widget' => '<div id="%1$s" class="widget %2$s p-4">',
-                      'after_widget'  => '</div>',
-                      'before_title'  => '<h4 class="widget-title font-italic">',
-                      'after_title'   => '</h4>',]);
-}
+//function wpbootstrap_sidebar(){
+//    register_sidebar(['name'          => "Sidebar principale",
+//                      'id'            => 'main-sidebar',
+//                      'description'   => "La sidebar principale",
+//                      'before_widget' => '<div id="%1$s" class="widget %2$s p-4">',
+//                      'after_widget'  => '</div>',
+//                      'before_title'  => '<h4 class="widget-title font-italic">',
+//                      'after_title'   => '</h4>',]);
+//}
 
 //prise en compte de ma nouvelle feuille de style pour page de connexion
 function my_login_stylesheet(){
-    wp_enqueue_style('custom-login', get_stylesheet_directory_uri() . '/login/style.css');
-}
-
-function generateForm(){
-    ob_start();
     wp_enqueue_style('custom-login', get_stylesheet_directory_uri() . '/login/style.css');
 }
 
@@ -84,8 +83,6 @@ function hcf_display_callback($post){
     include plugin_dir_path(__FILE__) . './metabox.php';
 }
 
-add_action('add_meta_boxes', 'hcf_register_meta_boxes');
-
 
 /**
  * Save meta box content.
@@ -125,30 +122,38 @@ add_filter('nav_menu_link_attributes', function ($attr){
     return $attr;
 });
 
-
+add_action('add_meta_boxes', 'hcf_register_meta_boxes');
 add_action('widgets_init', 'wpbootstrap_sidebar');
 add_action('after_setup_theme', 'custom_setup_theme');
 add_action('login_enqueue_scripts', 'my_login_stylesheet');
 add_action('wp_enqueue_scripts', 'bootstrap_stylesheet');
-//add_filter('single_template', 'my_single_template');
 add_action('widgets_init', 'wpbootstrap_sidebar');
 add_action('init', 'cptui_register_my_cpts_logement');
 add_action('save_post', 'hcf_save_meta_box');
-add_action('"admin_post_nopriv_wpinscription_form', function (){
-    if (!wp_verify_nonce($_POST['random_nonce'], 'random_action')){
-        die("erreur non invalide ");
-    }
-    $email    = $_POST['email'];
-    $username = $_POST['username'];
-    $name     = $_POST['name'];
-    $lastName = $_POST['lastname'];
-    $password = $_POST['password'];
-    wp_insert_user(['user_login' => username,
-                    'user_pass'  => $password,
-                    'user_mail'  => $email,
-                    'role'=> 'ABONNE']);
-    wp_redirect($_POST['_wp_http_refer'] . "message=" . $password);
-    exit();
-});
 
+//redirection apres la connection
+add_filter('login_redirect', function ($redirect, $b, $user){
+    if (!is_wp_error($user) && user_can($user, 'editor')){
+        return '/';
+    }
+    return $redirect;
+}, 10, 3);
+
+
+//inscription de l'utilisateur
+add_action('admin_post_nopriv_wpinscription_form', function (){
+    if (!wp_verify_nonce($_POST['random_nonce'], 'random_action')){
+        die("erreur nonce invalide ");
+    }
+    $username   = substr($_POST['email'], 0, strpos($_POST['email'], "@"));
+    $user_array = array('user_email' => $_POST['email'],
+                        'user_login' => $username,
+                        'first_name' => $_POST['name'],
+                        'last_name'  => $_POST['lastname'],
+                        'user_pass'  => $_POST['password']);
+    $id         = wp_insert_user($user_array);
+
+    wp_update_user(array('ID' => $id, 'role' => $_POST['role']));
+    wp_redirect('/');
+});
 

@@ -1,3 +1,5 @@
+
+
 <?php $query = new WP_Query(array('post_type'   => 'logement',
                                   'post_status' => 'publish'));
 ?>
