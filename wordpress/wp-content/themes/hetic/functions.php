@@ -7,10 +7,15 @@ function bootstrap_stylesheet(){
 }
 
 function custom_setup_theme(){
+    //    je sais pas c'est quoi '
     add_theme_support('title-tag');
+    //    ajout image de presentation post
     add_theme_support('post-thumbnails');
+    //    menu
     add_theme_support('menus');
     register_nav_menu('header_menu', "Menu du header");
+    // On ajoute le support du html5 pour les listes de commentaires
+    add_theme_support('html5', array('comment-list'));
 
     //add_theme_support('is_validate');
 }
@@ -31,11 +36,6 @@ function my_login_stylesheet(){
     wp_enqueue_style('custom-login', get_stylesheet_directory_uri() . '/login/style.css');
 }
 
-
-/**
- * Filter the single_template with our custom function
- */
-
 /**
  * Single template function which will choose our template
  */
@@ -49,62 +49,57 @@ function my_single_template($single){
 
         elseif (file_exists(SINGLE_PATH . '/single-cat-' . $cat->term_id . '.php'))
             return SINGLE_PATH . '/single-cat-' . $cat->term_id . '.php';
+        else
+            return SINGLE_PATH . '/single-post.php';
+
 
     endforeach;
 }
 
 //Ajout de widget "Logement"
-function cptui_register_my_cpts_logement()
-{
-    $labels = [
-        "name" => __("Logements", "custom-post-type-ui"),
-        "singular_name" => __("Logement", "custom-post-type-ui"),
-    ];
+function cptui_register_my_cpts_logement(){
+    $labels = ["name"          => __("Logements", "custom-post-type-ui"),
+               "singular_name" => __("Logement", "custom-post-type-ui"),];
 
-    $args = [
-        "label" => __("Logements", "custom-post-type-ui"),
-        "labels" => $labels,
-        "description" => "",
-        "public" => true,
-        "show_in_rest" => true,
-        "has_archive" => true,
-        "delete_with_user" => false,
-        "capability_type" => "post",
-        "map_meta_cap" => true,
-        "hierarchical" => false,
-        "rewrite" => ["slug" => "logement", "with_front" => true],
-        "query_var" => true,
-        "supports" => ["title", "thumbnail"],
-        "show_in_graphql" => false,
-    ];
+    $args = ["label"            => __("Logements", "custom-post-type-ui"),
+             "labels"           => $labels,
+             "description"      => "",
+             "public"           => true,
+             "show_in_rest"     => true,
+             "has_archive"      => true,
+             "delete_with_user" => false,
+             "capability_type"  => "post",
+             "map_meta_cap"     => true,
+             "hierarchical"     => false,
+             "rewrite"          => ["slug" => "logement", "with_front" => true],
+             "query_var"        => true,
+             "supports"         => ["title", "thumbnail"],
+             "show_in_graphql"  => false,];
 
     register_post_type("logement", $args);
 
-    $labelsTaxo = [
-        'name' => 'Styles',
-        'singular_name' => 'Style'
-    ];
+    $labelsTaxo = ['name'          => 'Styles',
+                   'singular_name' => 'Style'];
 
-    $argsTaxo = [
-        'labels' => $labelsTaxo,
-        'public' => true,
-        'hierarchical' => true,
-        'show_in_rest' => true,
-        'show_admin_column' => true
-    ];
+    $argsTaxo = ['labels'            => $labelsTaxo,
+                 'public'            => true,
+                 'hierarchical'      => true,
+                 'show_in_rest'      => true,
+                 'show_admin_column' => true];
 
     register_taxonomy('style', ['post'], $argsTaxo);
 }
+
 //Add metabox to post Logements
-function hcf_register_meta_boxes() {
-    add_meta_box( 'hcf-1', __( 'Desciption du logement', 'hcf' ), 'hcf_display_callback', 'logement' );
+function hcf_register_meta_boxes(){
+    add_meta_box('hcf-1', __('Desciption du logement', 'hcf'), 'hcf_display_callback', 'logement');
 }
 
-function hcf_display_callback( $post ) {
-    include plugin_dir_path( __FILE__ ) . './metabox.php';
+function hcf_display_callback($post){
+    include plugin_dir_path(__FILE__) . './metabox.php';
 }
 
-add_action( 'add_meta_boxes', 'hcf_register_meta_boxes' );
+add_action('add_meta_boxes', 'hcf_register_meta_boxes');
 
 
 /**
@@ -112,39 +107,40 @@ add_action( 'add_meta_boxes', 'hcf_register_meta_boxes' );
  *
  * @param int $post_id Post ID
  */
-function hcf_save_meta_box( $post_id ) {
-    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
-    if ( $parent_id = wp_is_post_revision( $post_id ) ) {
+function hcf_save_meta_box($post_id){
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+        return;
+    if ($parent_id = wp_is_post_revision($post_id)){
         $post_id = $parent_id;
     }
-    $fields = [
-        'hcf-description',
-        'hcf-logement_type',
-        'hcf-espace',
-        'hcf-nb_lit',
-        'hcf-nb_sdb',
-        'hcf-nb_pers',
-        'hcf-adresse_logement',
-        'hcf-ville_logement',
-        'hcf-prix_logement',
-        'hcf-proprio_type',
-    ];
-    foreach ( $fields as $field ) {
-        if ( array_key_exists( $field, $_POST ) ) {
-            update_post_meta( $post_id, $field, sanitize_text_field( $_POST[$field] ) );
+    $fields = ['hcf-description',
+               'hcf-logement_type',
+               'hcf-espace',
+               'hcf-nb_lit',
+               'hcf-nb_sdb',
+               'hcf-nb_pers',
+               'hcf-adresse_logement',
+               'hcf-ville_logement',
+               'hcf-prix_logement',
+               'hcf-proprio_type',];
+    foreach ($fields as $field) {
+        if (array_key_exists($field, $_POST)){
+            update_post_meta($post_id, $field, sanitize_text_field($_POST[$field]));
         }
-     }
+    }
 }
 
-add_filter('nav_menu_css_class', function ($classes) {
+add_filter('nav_menu_css_class', function ($classes){
     $classes[] = "nav-item";
     return $classes;
 });
 
-add_filter('nav_menu_link_attributes', function ($attr) {
+add_filter('nav_menu_link_attributes', function ($attr){
     $attr['class'] = 'nav-link';
     return $attr;
 });
+
+
 add_action('widgets_init', 'wpbootstrap_sidebar');
 add_action('after_setup_theme', 'custom_setup_theme');
 add_action('login_enqueue_scripts', 'my_login_stylesheet');
@@ -152,6 +148,6 @@ add_action('wp_enqueue_scripts', 'bootstrap_stylesheet');
 add_filter('single_template', 'my_single_template');
 add_action('widgets_init', 'wpbootstrap_sidebar');
 add_action('init', 'cptui_register_my_cpts_logement');
-add_action( 'save_post', 'hcf_save_meta_box' );
+add_action('save_post', 'hcf_save_meta_box');
 
 
