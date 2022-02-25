@@ -10,6 +10,7 @@
 </head>
 <body <?php body_class(); ?>>
 <div class="container">
+<<<<<<< HEAD
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">Navbar</a>
@@ -25,6 +26,24 @@
             ]); ?>
 
             <?php get_search_form(); ?>
+=======
+  <!-- Header -->
+  <header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+      <div class="col-12 text-center">
+        <a class="blog-header-logo text-dark" href="<?php bloginfo('url'); ?>"><?php bloginfo('name') ?></a>
+        <?php if(is_user_logged_in()){ ?>
+          <a class="btn btn-warning" href="<?= home_url('/ajout-logement')?> ">Ajouter un logement</a>
+        <?php
+        }else {
+          return null;
+        }
+        ?>
+      </div>
+    </div>
+  </header>
+  <!-- Fin du header -->
+>>>>>>> 90963aa ([First version] add post)
 
         </div>
     </div>
