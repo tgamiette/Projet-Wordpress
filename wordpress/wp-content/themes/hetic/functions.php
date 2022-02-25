@@ -45,22 +45,25 @@ function cptui_register_my_cpts_logement(){
     $labels = ["name"          => __("Logements", "custom-post-type-ui"),
                "singular_name" => __("Logement", "custom-post-type-ui"),];
 
-    $args = ["label"            => __("Logements", "custom-post-type-ui"),
-             "labels"           => $labels,
-             "description"      => "",
-             "public"           => true,
-             "show_in_rest"     => true,
-             "has_archive"      => true,
-             "delete_with_user" => false,
-             "capability_type"  => "post",
-             "map_meta_cap"     => true,
-             "hierarchical"     => false,
-             "rewrite"          => ["slug" => "logement", "with_front" => true],
-             "query_var"        => true,
-             "supports"         => ["title", "thumbnail"],
-             "show_in_graphql"  => false,];
+    $args = [
+        "label" => __("Logements", "custom-post-type-ui"),
+        "labels" => $labels,
+        "description" => "",
+        "public" => true,
+        "show_in_rest" => true,
+        "has_archive" => true,
+        "delete_with_user" => false,
+        "capability_type" => "post",
+        "map_meta_cap" => true,
+        "hierarchical" => false,
+        "rewrite" => ["slug" => "event", "with_front" => true],
+        "query_var" => true,
+        "supports" => ["title", "thumbnail"],
+        "show_in_graphql" => false
+    ];
 
     register_post_type("logement", $args);
+    add_theme_support( "post-thumbnails", array("logement"));
 
     $labelsTaxo = ['name'          => 'Styles',
                    'singular_name' => 'Style'];
@@ -95,19 +98,22 @@ function hcf_save_meta_box($post_id){
     if ($parent_id = wp_is_post_revision($post_id)){
         $post_id = $parent_id;
     }
-    $fields = ['hcf-description',
-               'hcf-logement_type',
-               'hcf-espace',
-               'hcf-nb_lit',
-               'hcf-nb_sdb',
-               'hcf-nb_pers',
-               'hcf-adresse_logement',
-               'hcf-ville_logement',
-               'hcf-prix_logement',
-               'hcf-proprio_type',];
-    foreach ($fields as $field) {
-        if (array_key_exists($field, $_POST)){
-            update_post_meta($post_id, $field, sanitize_text_field($_POST[$field]));
+    $fields = [
+        'hcf-description',
+        'hcf-logement_type',
+        'hcf-espace',
+        'hcf-nb_lit',
+        'hcf-nb_sdb',
+        'hcf-nb_pers',
+        'hcf-adresse_logement',
+        'hcf-ville_logement',
+        'hcf-prix_logement',
+        'hcf-proprio_type',
+        'hcf-pictures',
+    ];
+    foreach ( $fields as $field ) {
+        if ( array_key_exists( $field, $_POST ) ) {
+            update_post_meta( $post_id, $field, sanitize_text_field( $_POST[$field] ) );
         }
     }
 }
