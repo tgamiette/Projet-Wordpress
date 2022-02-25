@@ -68,5 +68,10 @@
       <input type="radio" name="hcf-proprio_type" value="Professionnel" <?php esc_attr( get_post_meta( get_the_ID(), 'hcf-proprio_type', true ) ) === 'Maison'? 'checked' : '' ?>>Professionnel</input>
   </p>
 
+  <p class="meta-options hcf_field">
+    <label for="hcf-pictures">Photos</label>
+    <input multiple id="hcf-pictures" name="hcf-pictures" type="file">
+  </p>
+
 
 </div>

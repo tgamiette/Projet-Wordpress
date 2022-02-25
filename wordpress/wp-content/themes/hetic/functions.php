@@ -55,13 +55,14 @@ function cptui_register_my_cpts_logement()
         "capability_type" => "post",
         "map_meta_cap" => true,
         "hierarchical" => false,
-        "rewrite" => ["slug" => "logement", "with_front" => true],
+        "rewrite" => ["slug" => "event", "with_front" => true],
         "query_var" => true,
         "supports" => ["title", "thumbnail"],
-        "show_in_graphql" => false,
+        "show_in_graphql" => false
     ];
 
     register_post_type("logement", $args);
+    add_theme_support( "post-thumbnails", array("logement"));
 
     $labelsTaxo = [
         'name' => 'Styles',
@@ -116,6 +117,7 @@ function hcf_save_meta_box( $post_id ) {
         'hcf-ville_logement',
         'hcf-prix_logement',
         'hcf-proprio_type',
+        'hcf-pictures',
     ];
     foreach ( $fields as $field ) {
         if ( array_key_exists( $field, $_POST ) ) {
