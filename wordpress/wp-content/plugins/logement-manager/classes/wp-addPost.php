@@ -100,15 +100,15 @@ class Wp_addPost
   }
 
   public static function handleForm(){
-    // if(current_user_can('manage_logement')){
+    if(current_user_can('manage_logement')){
 
-      //if(wp_verify_nonce($_REQUEST['hcf_logement_nonce'], 'hcf_logement_post')){
+      if(wp_verify_nonce($_REQUEST['hcf_logement_nonce'], 'hcf_logement_post')){
 
          $post_args = array(
            'post_title' => $_POST['hcf-title'],
            'post_content' => $_POST['hcf-description'],
            'post_type' => 'logement',
-           'post_status' => 'publish',
+           'post_status' => 'pending',
            'post_author' => get_current_user_id(),
            'tax_input' => [
              'style' => [$_POST['logement_style']]
@@ -132,11 +132,13 @@ class Wp_addPost
          set_post_thumbnail( $postId, $attachment_id);
          wp_redirect(home_url('?p='. $postId));
 
-      // } else {
-      //   var_dump('Une erreur de nonce s\'est produite!');
-      // }
+      } else {
+         var_dump('Une erreur de nonce s\'est produite!');
+      }
+    }else{
+      wp_redirect(home_url());
     }
-  //}
+  }
 }
 
 
