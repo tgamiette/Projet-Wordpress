@@ -34,7 +34,12 @@
         <a class="blog-header-logo text-dark" href="<?php bloginfo('url'); ?>"><?php bloginfo('name') ?></a>
         <?php if(is_user_logged_in()){ ?>
           <a class="btn btn-warning" href="<?= home_url('/ajout-logement')?> ">Ajouter un logement</a>
-        <?php
+          <?php
+          if(current_user_can('administrator')){
+            ?>
+              <a class="btn btn-danger" href="<?= home_url('/moderation')?> ">Moderation</a>
+            <?php
+          }
         }else {
           return null;
         }
