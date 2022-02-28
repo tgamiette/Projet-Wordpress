@@ -99,6 +99,8 @@ class Wp_addPost
     return ob_get_clean();
   }
 
+
+
   public static function handleForm(){
     if(current_user_can('manage_logement')){
 
