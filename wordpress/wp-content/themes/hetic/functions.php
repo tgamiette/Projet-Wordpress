@@ -32,7 +32,6 @@ function wpbootstrap_sidebar() {
                      'after_title'   => '</h4>',
                    ]);
 }
-
 add_action('widgets_init', 'wpbootstrap_sidebar');
 
 
@@ -126,3 +125,30 @@ function hcf_save_meta_box( $post_id ) {
      }
 }
 add_action( 'save_post', 'hcf_save_meta_box' );
+
+
+//Update post
+
+function updatePost() {
+  if(current_user_can('administrator')){
+    if(wp_verify_nonce($_REQUEST['update_logement_nonce'], 'update_logement_post')){
+      $post_args = array(
+        'ID' => $_POST['update_post_id'],
+        'post_status' => 'publish'
+      );
+
+      if($_POST['btn-publish']){
+          wp_update_post($post_args);
+      }else if ($_POST['btn-delete']){
+        wp_delete_post($_POST['update_post_id']);
+      }
+      wp_redirect(home_url('/moderation'));
+    }else{
+      var_dump('Une erreur de nonce s\'est produite :)!');
+    }
+  }else{
+    var_dump('Une erreur de role s\'est produite!');
+  }
+}
+
+add_action( 'admin_post_update_logement_post', 'updatePost' );

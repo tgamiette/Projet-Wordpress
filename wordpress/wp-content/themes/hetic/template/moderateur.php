@@ -13,7 +13,7 @@ $query = new WP_Query(array(
 ));
 
 if(current_user_can('administrator')){
-  if($query -> have_posts()){
+  if($query->have_posts()){
     ?>
       <div class="container row-md-6">
         <?php
@@ -23,8 +23,17 @@ if(current_user_can('administrator')){
             <img src="<?php the_post_thumbnail_url(); ?>" class="card-img-top" alt="..." style="width:50px;">
             <h5 class="card-title"><?php the_title(); ?></h5>
 
-            <button type="button" name="button" class="btn btn-warning">Publier</button>
-            <button type="button" name="button" class="btn btn-danger">Supprimer</button>
+            <form action="<?= admin_url('admin-post.php'); ?>" method="post">
+
+              <input type="submit" name="btn-publish" class="btn btn-warning" value='Publier'/>
+              <input type="submit" name="btn-delete" class="btn btn-danger"  value='Supprimer'/>
+              <input type="hidden" name="update_post_id" value="<?php the_ID(); ?>">
+              <input type="hidden" name="action" value="update_logement_post" />
+              <?php wp_nonce_field('update_logement_post', 'update_logement_nonce'); ?>
+
+
+            </form>
+
           </div>
           <?php
         }
