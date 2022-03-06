@@ -9,20 +9,26 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <?php wp_nav_menu(['theme_location' => 'header_menu',
-                               'container'      => false,
-                               'menu_class'     => "navbar-nav me-auto mb-2 mb-lg-0"]); ?>
-
-            <?php get_search_form(); ?>
-        </div>
+<div class="container">
+  <!-- Header -->
+  <header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+      <div class="col-12 text-center">
+        <a class="blog-header-logo text-dark" href="<?php bloginfo('url'); ?>"><?php bloginfo('name') ?></a>
+        <?php if (is_user_logged_in()) { ?>
+          <a class="btn btn-warning" href="<?= home_url('/ajout-logement') ?> ">Ajouter un logement</a>
+          <?php
+          if (current_user_can('administrator')) {
+            ?>
+            <a class="btn btn-danger" href="<?= home_url('/moderation') ?> ">Moderation</a>
+            <?php
+          }
+        }
+        else {
+          return null;
+        }
+        ?>
+      </div>
     </div>
 </nav>
 <div class="alert alert-warning alert-dismissible fade show"
