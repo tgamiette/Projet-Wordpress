@@ -30,7 +30,7 @@
         ?>
       </div>
     </div>
-</nav>
+    
 <div class="alert alert-warning alert-dismissible fade show"
      style="color:<?= get_theme_mod('wphetic_promo_font_color') ?>;background:<?= get_theme_mod('wphetic_promo_bg_color') ?>"
      role="alert">

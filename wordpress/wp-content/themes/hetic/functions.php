@@ -180,11 +180,11 @@ add_filter('nav_menu_link_attributes', function ($attr) {
 add_filter('login_redirect', 'redirect_login', 10, 3);
 add_action('add_meta_boxes', 'hcf_register_meta_boxes');
 add_action('widgets_init', 'wpbootstrap_sidebar');
-//
+
 add_action('add_meta_boxes', 'hcf_register_meta_boxes');
 
 
-//
+
 //Update post
 
 function updatePost() {
@@ -215,7 +215,6 @@ function updatePost() {
 }
 
 add_action('admin_post_update_logement_post', 'updatePost');
-
 add_action('after_setup_theme', 'custom_setup_theme');
 add_action('login_enqueue_scripts', 'my_login_stylesheet');
 add_action('wp_enqueue_scripts', 'bootstrap_stylesheet');
@@ -223,7 +222,6 @@ add_action('widgets_init', 'wpbootstrap_sidebar');
 add_action('init', 'cptui_register_my_cpts_logement');
 add_action('save_post', 'hcf_save_meta_box');
 add_action('admin_post_nopriv_wpinscription_form', 'save_user');
-
 
 add_action('customize_register', function (WP_Customize_Manager $manager) {
   $manager->add_section('wphetic_promo_color', ['title' => 'Bannière promo (HETIC)']);
