@@ -223,6 +223,10 @@ add_action('init', 'cptui_register_my_cpts_logement');
 add_action('save_post', 'hcf_save_meta_box');
 add_action('admin_post_nopriv_wpinscription_form', 'save_user');
 
+
+
+
+
 add_action('customize_register', function (WP_Customize_Manager $manager) {
   $manager->add_section('wphetic_promo_color', ['title' => 'Bannière promo (HETIC)']);
   $manager->add_setting('wphetic_promo_bg_color', [
