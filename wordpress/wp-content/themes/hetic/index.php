@@ -32,15 +32,8 @@ if ($query->have_posts()):
       </div>
     <?php endwhile; ?>
   </div>
-<?php
-endif;
+<?php endif; ?>
 
-?>
-
-
-?>
-
-<!---->
 <?php //get_template_part('body'); ?>
 <?php //get_template_part('getLogement'); ?>
 <?php //get_template_part('inscription'); ?>

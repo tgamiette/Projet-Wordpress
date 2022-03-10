@@ -52,8 +52,7 @@ function custom_setup_theme() {
   add_theme_support('html5', array('comment-list'));
   $user = wp_get_current_user();
 
-
-  if (current_user_can('subscriber') || current_user_can('hetic_user')) {
+  if (current_user_can('editor'||current_user_can('hetic-user'))) {
     show_admin_bar(false);
   }
 }
