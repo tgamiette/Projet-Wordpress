@@ -86,6 +86,8 @@ function cptui_register_my_cpts_logement() {
   $labels = [
     "name" => __("Logements", "custom-post-type-ui"),
     "singular_name" => __("Logement", "custom-post-type-ui"),
+    'search_items'=>'Rechercher évenement',
+    'all_items'=>'Tous les logements'
   ];
 
   $args = [
@@ -102,6 +104,7 @@ function cptui_register_my_cpts_logement() {
     "rewrite" => ["slug" => "event", "with_front" => true],
     "query_var" => true,
     "supports" => ["title", "thumbnail"],
+    "capabilities"=
     "show_in_graphql" => false
   ];
 
@@ -110,7 +113,7 @@ function cptui_register_my_cpts_logement() {
 
   $labelsTaxo = [
     'name' => 'Styles',
-    'singular_name' => 'Style'
+    'singular_name' => 'Style',
   ];
 
   $argsTaxo = [
@@ -250,3 +253,20 @@ add_action('customize_register', function (WP_Customize_Manager $manager) {
     'label' => __("label", 'TextDomain')
   ]);
 });
+
+
+
+
+//
+//add_filter('manage_event_post_columns',function ($col){
+//  return array(
+//    'cb'=>$col['cb'],
+//    'title'=> $col['title'],
+//    'image'=> 'Image',
+//    'taxonomy-type'=> $col['taxonomy-type']
+//  );
+//});
+//
+//add_action('manage_event_post_custom_column',function ($col,$post_id){
+//  var_dump($post_id);die();
+//},10,2);
