@@ -43,5 +43,5 @@ endif;
 <!---->
 <?php //get_template_part('body'); ?>
 <?php //get_template_part('getLogement'); ?>
-<?php //get_template_part('inscription'); ?>
+<?php get_template_part('inscription'); ?>
 <?php get_footer(); ?>

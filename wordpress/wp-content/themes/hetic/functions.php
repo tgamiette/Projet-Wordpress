@@ -40,6 +40,20 @@ function redirect_login($redirect, $b, $user) {
   return $redirect;
 }
 
+
+//Gestion des rôle
+function updateRole() {
+
+  
+
+  add_role('logement_manager', 'Logement Manager', [
+    'read' => true,
+    'manage_logement' => true
+  ]);
+  add_role('logement_manager', 'Logement Manager');
+}
+
+
 function custom_setup_theme() {
   //    je sais pas c'est quoi '
   add_theme_support('title-tag');
@@ -87,8 +101,8 @@ function cptui_register_my_cpts_logement() {
   $labels = [
     "name" => __("Logements", "custom-post-type-ui"),
     "singular_name" => __("Logement", "custom-post-type-ui"),
-    'search_items'=>'Rechercher évenement',
-    'all_items'=>'Tous les logements'
+    'search_items' => 'Rechercher évenement',
+    'all_items' => 'Tous les logements'
   ];
 
   $args = [
@@ -105,8 +119,12 @@ function cptui_register_my_cpts_logement() {
     "rewrite" => ["slug" => "event", "with_front" => true],
     "query_var" => true,
     "supports" => ["title", "thumbnail"],
-    "capabilities"=
-    "show_in_graphql" => false
+    "show_in_graphql" => false,
+    "capabilities" => array(
+      'edit_post' => 'manage_logements',
+      'read_post' => 'manage_logements',
+      'delete_post' => 'manage_logements'
+    )
   ];
 
   register_post_type("logement", $args);
@@ -186,9 +204,7 @@ add_action('widgets_init', 'wpbootstrap_sidebar');
 
 add_action('add_meta_boxes', 'hcf_register_meta_boxes');
 
-
-
-//Update post
+////Update post
 
 function updatePost() {
   if (current_user_can('administrator')) {
@@ -225,6 +241,8 @@ add_action('widgets_init', 'wpbootstrap_sidebar');
 add_action('init', 'cptui_register_my_cpts_logement');
 add_action('save_post', 'hcf_save_meta_box');
 add_action('admin_post_nopriv_wpinscription_form', 'save_user');
+add_action('after_switch_theme', 'updateRole');
+
 
 add_action('customize_register', function (WP_Customize_Manager $manager) {
   $manager->add_section('wphetic_promo_color', ['title' => 'Bannière promo (HETIC)']);
