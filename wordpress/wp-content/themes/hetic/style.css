@@ -11,16 +11,23 @@ Version: OMEGA
 }
 
 .blog-header-logo {
-    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-    font-size: 2.25rem;
+    /* font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 2.25rem; */
 }
 
 .blog-header-logo:hover {
     text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+/* h1, h2, h3, h4, h5, h6 {
     font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+} */
+
+input, textarea{
+    border-radius: 10px;
+    border: 1px solid #e6e6e6;
+    box-shadow: none;
+    padding: 5px 10px;
 }
 
 .display-4 {
@@ -36,3 +43,34 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     z-index: 2;
     height: 2.75rem;}
+
+
+/* SINGLE PAGE */
+.single .card-group{
+    padding: 0;
+}
+.single .card-group>.card{
+    display: grid;
+    grid-template-columns: 0.75fr 1fr;
+}
+
+.card-body{
+    width: 70%;
+}
+
+.comments_section{
+    display: grid;
+    grid-template-columns: 1fr 0.5fr;
+    margin: 30px 0;
+}
+
+.c-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.hidden{
+    display: none;
+}

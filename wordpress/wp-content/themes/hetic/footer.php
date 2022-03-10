@@ -66,6 +66,7 @@
 	</footer><!-- #colophon -->
 
 </div><!-- #page -->
+<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 
 <?php wp_footer(); ?>
 
