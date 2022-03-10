@@ -47,14 +47,64 @@ if ($query->have_posts()){
 
                 </div>
              </div>
+
+
      <?php
      }
 
      ?> </div>
+
      <?php
  }
 
  ?>
+
+      <div class="comments_section">
+
+           <div class="c-comments">
+                <h3>Les commentaires</h3>
+                <?php
+                $args = array(
+                     'post_id' => get_the_ID(),
+                );
+                $comments = get_comments( $args );
+                 foreach ( $comments as $comment ) {
+                     ?>
+                     <div class="c-comments_card">
+                          <p><?= $comment->comment_author ?></p>
+                          <p><?= $comment->comment_content ?></p>
+                          <p><?= $comment->comment_date ?></p>
+                     </div>
+
+                     <?php
+                 }
+                ?>
+          </div>
+
+          <div class="c-form_comments">
+               <h2>Mettre un commentaire ?</h2>
+               <form class="" action="index.html" method="post">
+                    <div class="c-input">
+                         <label for="comment_title">Titre</label>
+                         <input type="text" name="comment_title" value="">
+                    </div>
+
+                    <div class="c-input">
+                         <label for="comment_drescription">Commentaire</label>
+                         <textarea type="text" name="comment_drescription" value="" maxlength="500"></textarea>
+                    </div>
+
+
+                    <input type="hidden" name="action" value="add_logement_comment" />
+                    <?php wp_nonce_field('add_logement_comment', 'add_logement_nonce'); ?>
+
+                    <button type="submit" name="button">Publier</button>
+               </form>
+          </div>
+
+     </div>
+
+
 
 
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php //if(have_comments()) : ?>
 <!--    <ul class="list-unstyled">-->
 <!--        --><?php
@@ -44,3 +45,6 @@ comment_form([
     ]
 ]);
 ?>
+=======
+<?php  ?>
+>>>>>>> a581134 ([add] Add comments)

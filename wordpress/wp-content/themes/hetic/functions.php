@@ -91,12 +91,22 @@ function cptui_register_my_cpts_logement(){
 add_action('after_setup_theme', 'wpbootstrap_after_setup_theme');
 
 //Ajout de Boostrap;
-add_action('wp_enqueue_scripts', 'wpheticBootstrap');
+
 function wpheticBootstrap()
 {
     wp_enqueue_style('bootstrap_css', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css');
     wp_enqueue_script("bootstrap_js", "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js", [], false, true);
+    wp_enqueue_script("jquery", "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js", false, false, true);
+    wp_enqueue_script("script", get_stylesheet_directory_uri() . '/script.js');
 }
+
+add_action('wp_enqueue_scripts', 'wpheticBootstrap');
+
+function my_styles() {
+    wp_register_style( 'styles', get_stylesheet_directory_uri() . '/style.css');
+    wp_enqueue_style( 'styles');
+}
+add_action( 'wp_enqueue_scripts', 'styles' );
 
 // On ajoute une sidebar
 function wpbootstrap_sidebar() {
@@ -134,7 +144,7 @@ function cptui_register_my_cpts_logement()
         "hierarchical" => false,
         "rewrite" => ["slug" => "event", "with_front" => true],
         "query_var" => true,
-        "supports" => ["title", "thumbnail"],
+        "supports" => ["title", "thumbnail", "comments"],
         "show_in_graphql" => false
     ];
 
@@ -293,4 +303,35 @@ function updatePost() {
 }
 
 add_action( 'admin_post_update_logement_post', 'updatePost' );
+<<<<<<< HEAD
 >>>>>>> 70a37c9 ([moderation role] publish + delete post)
+=======
+
+
+
+//Update comments
+
+function updateComments() {
+  if(current_user_can('administrator')){
+    if(wp_verify_nonce($_REQUEST['update_comment_nonce'], 'update_comment_post')){
+      $post_args = array(
+        'ID' => $_POST['update_comment_id'],
+        'comment_approved' => 'approve'
+      );
+
+      if($_POST['btn-publish']){
+          wp_set_comment_status($post_args);
+      }else if ($_POST['btn-delete']){
+        wp_delete_comment($_POST['update_post_id']);
+      }
+      wp_redirect(home_url('/moderation'));
+    }else{
+      var_dump('Une erreur de nonce s\'est produite :)!');
+    }
+  }else{
+    var_dump('Une erreur de role s\'est produite!');
+  }
+}
+
+add_action( 'admin_post_update_logement_post', 'updateComments' );
+>>>>>>> a581134 ([add] Add comments)

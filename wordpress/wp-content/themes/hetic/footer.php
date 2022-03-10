@@ -69,6 +69,7 @@
 	</footer><!-- #colophon -->
 
 </div><!-- #page -->
+<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 
 >>>>>>> ebd4d20 (add plugin add logement)
 <?php wp_footer(); ?>
