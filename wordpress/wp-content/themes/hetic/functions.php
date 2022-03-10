@@ -66,8 +66,7 @@ function custom_setup_theme() {
   add_theme_support('html5', array('comment-list'));
   $user = wp_get_current_user();
 
-
-  if (current_user_can('subscriber') || current_user_can('hetic_user')) {
+  if (current_user_can('editor'||current_user_can('hetic-user'))) {
     show_admin_bar(false);
   }
 }
@@ -242,6 +241,10 @@ add_action('init', 'cptui_register_my_cpts_logement');
 add_action('save_post', 'hcf_save_meta_box');
 add_action('admin_post_nopriv_wpinscription_form', 'save_user');
 add_action('after_switch_theme', 'updateRole');
+
+
+
+
 
 
 add_action('customize_register', function (WP_Customize_Manager $manager) {
