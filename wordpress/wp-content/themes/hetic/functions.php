@@ -1,5 +1,11 @@
 <?php
 define(SINGLE_PATH, TEMPLATEPATH . '/template');
+define( 'WP_DISABLE_FATAL_ERROR_HANDLER', true );   // 5.2
+define( 'WP_DEBUG', true );
+require 'Classes/BannerMessage.php';
+
+$banner= new BannerMessage();
+
 
 function bootstrap_stylesheet() {
 
@@ -248,13 +254,14 @@ add_action('after_switch_theme', 'updateRole');
 
 
 add_action('customize_register', function (WP_Customize_Manager $manager) {
-  $manager->add_section('wphetic_promo_color', ['title' => 'Bannière promo (HETIC)']);
+  $manager->add_section('wphetic_promo', ['title' => 'Bannière promo (HETIC)']);
+  
   $manager->add_setting('wphetic_promo_bg_color', [
     'default' => '#d3d3d3',
     'sanitize' => 'sanitize_hex_color'
   ]);
   $manager->add_control(new WP_Customize_Color_Control($manager, 'wphetic_promo_bg_color', [
-    'section' => 'wphetic_promo_color',
+    'section' => 'wphetic_promo',
     'label' => 'Couleur de fond de la bannière'
   ]));
   $manager->add_setting('wphetic_promo_font_color', [
@@ -262,13 +269,20 @@ add_action('customize_register', function (WP_Customize_Manager $manager) {
     'sanitize' => 'sanitize_hex_color'
   ]);
   $manager->add_control(new WP_Customize_Color_Control($manager, 'wphetic_promo_font_color', [
-    'section' => 'wphetic_promo_color',
+    'section' => 'wphetic_promo',
     'label' => 'Couleur  de la police'
   ]));
   $manager->add_setting('wphetic_promo_label');
   $manager->add_control('wphetic_promo_label', [
-    'section' => 'wphetic_promo_color',
+    'section' => 'wphetic_promo',
     'label' => __("label", 'TextDomain')
+  ]);
+
+  $manager->add_setting('wphetic_promo_active');
+  $manager->add_control('wphetic_promo_active', [
+    'type'=>'checkbox',
+    'label'=>'Activation de la bannière',
+    'section' => 'wphetic_promo',
   ]);
 });
 
