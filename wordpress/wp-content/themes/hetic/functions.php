@@ -30,7 +30,6 @@ function my_styles() {
     wp_register_style( 'styles', get_stylesheet_directory_uri() . '/style.css');
     wp_enqueue_style( 'styles');
 }
-
 add_action( 'wp_enqueue_scripts', 'styles' );
 
 // On ajoute une sidebar
