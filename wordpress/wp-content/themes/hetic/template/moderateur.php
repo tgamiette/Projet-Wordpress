@@ -47,7 +47,7 @@ if(current_user_can('administrator')){
                   <th><p><?php the_content(); ?></p></th>
                   <th><p><?php the_content(); ?></p></th>
                   <th>
-                    <form action="<?= echo get_option('siteurl'); ?>/wp-comments-post.php" method="post">
+                    <form action="" method="post">
 
                       <input type="submit" name="btn-publish" class="btn btn-warning" value='Publier'/>
                       <input type="submit" name="btn-delete" class="btn btn-danger"  value='Supprimer'/>
