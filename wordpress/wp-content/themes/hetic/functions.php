@@ -12,6 +12,7 @@ function wpbootstrap_after_setup_theme() {
 
 add_action('after_setup_theme', 'wpbootstrap_after_setup_theme');
 add_theme_support('custom-logo');
+add_theme_support( 'custom-header');
 
 //Ajout de Boostrap;
 
