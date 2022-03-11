@@ -1,18 +1,3 @@
-<<<<<<< HEAD:wordpress/wp-content/themes/hetic/single/Single.php
-<?php
-$query= new WP_Query([
-  "post_type"=>"event",
-  "meta_key"=>"",
-  "is_valid"=>"",
-  "meta_type"=>"NUMERIC",
-  "orderby"=>""
-                     ]);
-
-if ($query->have_posts()){
-  $query->the_post();
-}
-?>
-=======
 
  <?php get_header(); ?>
 
@@ -113,4 +98,3 @@ if ($query->have_posts()){
 
 
  <?php get_footer(); ?>
->>>>>>> e903f43 (Add thumbnail + single.php):wordpress/wp-content/themes/hetic/single.php

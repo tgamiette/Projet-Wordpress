@@ -1,7 +1,5 @@
+<!--// Chargement des styles et des scripts Bootstrap sur WordPress-->
 <?php get_header(); ?>
-<<<<<<< HEAD
-<?php get_template_part('getLogment'); ?>
-=======
 <?php
 
 
@@ -73,5 +71,4 @@ $query = new WP_Query(array(
 
 
 <?php get_template_part('body'); ?>
->>>>>>> 5e725fa (Add custom postt type + metabox + show post)
 <?php get_footer(); ?>

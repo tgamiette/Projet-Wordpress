@@ -1,4 +1,6 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 <?php //if(have_comments()) : ?>
 <!--    <ul class="list-unstyled">-->
 <!--        --><?php
@@ -48,3 +50,9 @@ comment_form([
 =======
 <?php  ?>
 >>>>>>> a581134 ([add] Add comments)
+=======
+<?php  ?>
+>>>>>>> 78f84296e872481bc369df8f33d45e3103bb36d6
+=======
+<?php  ?>
+>>>>>>> 78f84296e872481bc369df8f33d45e3103bb36d6
