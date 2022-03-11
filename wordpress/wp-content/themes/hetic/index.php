@@ -49,7 +49,7 @@ $query = new WP_Query(array(
                     <div class="c-comments_card">
                          <div class="top_comment">
                               <div class="icon_comment">
-                                   <a href="https://www.flaticon.com/free-icons/profile" title="profile icons"></a>
+                                  <img src="http://localhost:8080/wp-content/uploads/2022/03/user.png"/>
                               </div>
                               <span><?= $comment->comment_author ?></span>
                          </div>

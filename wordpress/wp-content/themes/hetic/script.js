@@ -1,12 +1,16 @@
-console.log('lapin');
 
-jQuery('.btn-post').on('click', function(){
-  console.log('hello');
-  jQuery('.c-moderation_post').removeClass('hidden');
-  jQuery('.c-moderation_comments').addClass('hidden');
-});
+window.onload = (event) => {
+  var post = document.querySelector('.c-moderation_post');
+  var comment = document.querySelector('.c-moderation_comments');
+  var btn_post = document.querySelector('.btn-post');
+  console
+  btn_post.addEventListener('click', function(){
+    post.classList.remove("hidden");
+    comment.classList.add("hidden");
+  });
 
-jQuery('.btn-comment').on('click', function(){
-  jQuery('.c-moderation_comments').removeClass('hidden');
-  jQuery('.c-moderation_post').addClass('hidden');
-});
+  document.querySelector('.btn-comment').addEventListener('click', function(){
+    post.classList.add("hidden");
+    comment.classList.remove("hidden");
+  });
+};
