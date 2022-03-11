@@ -11,7 +11,7 @@
 <body <?php body_class(); ?>>
 <div class="container">
   <!-- Header -->
-  < class="blog-header py-3">
+<!--  <class="blog-header py-3">-->
   <div class="row flex-nowrap justify-content-between align-items-center">
     <div class="col-12 text-center">
       <a class="blog-header-logo text-dark" href="<?php bloginfo('url'); ?>"><?php bloginfo('name') ?></a>
@@ -39,7 +39,7 @@
 <div class="alert alert-warning alert-dismissible fade show"
      style="color:<?= get_theme_mod('wphetic_promo_font_color') ?>;background:<?= get_theme_mod('wphetic_promo_bg_color') ?>"
      role="alert">
-  <strong> <?= get_theme_mod('wphetic_promo_label') ?></strong>
+  <strong> <?= esc_html(get_theme_mod('wphetic_promo_label')) ?></strong>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>

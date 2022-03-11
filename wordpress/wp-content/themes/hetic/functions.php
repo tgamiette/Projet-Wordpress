@@ -1,14 +1,12 @@
 <?php
 define(SINGLE_PATH, TEMPLATEPATH . '/template');
-define( 'WP_DISABLE_FATAL_ERROR_HANDLER', true );   // 5.2
-define( 'WP_DEBUG', true );
+define('WP_DISABLE_FATAL_ERROR_HANDLER', true);   // 5.2
+define('WP_DEBUG', true);
 require 'Classes/BannerMessage.php';
-
-$banner= new BannerMessage();
+$banner = new BannerMessage();
 
 
 function bootstrap_stylesheet() {
-
   wp_enqueue_style('style', get_stylesheet_uri());
   wp_enqueue_style('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css');
   wp_enqueue_script('jquery');
@@ -17,6 +15,9 @@ function bootstrap_stylesheet() {
     'jquery',
     'popper'
   ), 1, true);
+
+  wp_enqueue_script('wphetic_js', get_template_directory_uri() . 'assets/hetic.js', array('perso_js'), false, true);
+
 }
 
 //inscription de l'utilisateur
@@ -47,14 +48,17 @@ function redirect_login($redirect, $b, $user) {
 }
 
 
-//Gestion des rôle
+//Gestion des rôles
 function updateRole() {
+  $admin = get_role('administrator');
+  $admin->add_cap('hetic_manager');
 
-  
-
-  add_role('logement_manager', 'Logement Manager', [
+  add_role('hetic_manager', 'Logement Manager', [
     'read' => true,
-    'manage_logement' => true
+    'hetic_manager' => true,
+    'hetic_user' => true,
+
+
   ]);
   add_role('logement_manager', 'Logement Manager');
 }
@@ -72,7 +76,7 @@ function custom_setup_theme() {
   add_theme_support('html5', array('comment-list'));
   $user = wp_get_current_user();
 
-  if (current_user_can('editor'||current_user_can('hetic-user'))) {
+  if (current_user_can('editor' || current_user_can('hetic-user'))) {
     show_admin_bar(false);
   }
 }
@@ -126,9 +130,16 @@ function cptui_register_my_cpts_logement() {
     "supports" => ["title", "thumbnail"],
     "show_in_graphql" => false,
     "capabilities" => array(
-      'edit_post' => 'manage_logements',
-      'read_post' => 'manage_logements',
-      'delete_post' => 'manage_logements'
+      'delete_others_posts' => 'manage_logement',
+      'edit_other_posts' => 'manage_logement',
+      'publish_posts' => 'manage_logement',
+      //user lamda
+      'delete_posts' => 'hetic_user',
+      'edit_posts' => 'hetic_user',
+
+
+
+
     )
   ];
 
@@ -242,6 +253,7 @@ add_action('admin_post_update_logement_post', 'updatePost');
 add_action('after_setup_theme', 'custom_setup_theme');
 add_action('login_enqueue_scripts', 'my_login_stylesheet');
 add_action('wp_enqueue_scripts', 'bootstrap_stylesheet');
+//add_action('admin_enqueue_scripts', 'bootstrap_stylesheet');
 add_action('widgets_init', 'wpbootstrap_sidebar');
 add_action('init', 'cptui_register_my_cpts_logement');
 add_action('save_post', 'hcf_save_meta_box');
@@ -249,13 +261,9 @@ add_action('admin_post_nopriv_wpinscription_form', 'save_user');
 add_action('after_switch_theme', 'updateRole');
 
 
-
-
-
-
 add_action('customize_register', function (WP_Customize_Manager $manager) {
   $manager->add_section('wphetic_promo', ['title' => 'Bannière promo (HETIC)']);
-  
+
   $manager->add_setting('wphetic_promo_bg_color', [
     'default' => '#d3d3d3',
     'sanitize' => 'sanitize_hex_color'
@@ -280,25 +288,126 @@ add_action('customize_register', function (WP_Customize_Manager $manager) {
 
   $manager->add_setting('wphetic_promo_active');
   $manager->add_control('wphetic_promo_active', [
-    'type'=>'checkbox',
-    'label'=>'Activation de la bannière',
+    'type' => 'checkbox',
+    'label' => 'Activation de la bannière',
     'section' => 'wphetic_promo',
   ]);
 });
 
 
+//custtom option logement
+add_filter('manage_logement_posts_columns', function ($col) {
+  return array(
+    'cb' => $col['cb'],
+    'title' => $col['title'],
+    'image' => 'Image',
+    'type' => 'Type',
+    'price' => 'prix',
+    'date' => $col['date']
+  );
+});
+add_action('manage_logement_posts_custom_column', function ($col, $postId) {
+  switch ($col) {
+    case price:
+      echo get_post_meta($postId, 'hcf-prix_logement', true) . "€";
+      break;
+    case image:
+      the_post_thumbnail('thumbnail', $postId);
+      break;
+    case image:
+    case type:
+      echo get_post_meta($postId, 'hcf-logement_type', true);
+      break;
+  }
+}, 10, 2);
 
 
-//
-//add_filter('manage_event_post_columns',function ($col){
-//  return array(
-//    'cb'=>$col['cb'],
-//    'title'=> $col['title'],
-//    'image'=> 'Image',
-//    'taxonomy-type'=> $col['taxonomy-type']
-//  );
-//});
-//
-//add_action('manage_event_post_custom_column',function ($col,$post_id){
-//  var_dump($post_id);die();
-//},10,2);
+//barre de recherche
+add_filter('query_vars', function ($params) {
+  $params[] = 'ville';
+  $params[] = 'prix_min';
+  $params[] = 'prix_max';
+  $params[] = 'type';
+});
+add_action(pre_get_posts, function (WP_QUERY $query) {
+  if (is_admin() || !$query->is_main_query()) {
+    return;
+  }
+
+  if ($query->get('post_type') === 'logement' && !empty(get_query_var('prix_min'))) {
+    $meta_query = $query->get('meta_query', []);
+    $meta_query[] = [
+      'key' => 'hcf-prix_logement',
+      'value' => get_query_var('prix_min'),
+      'compare' => '>=',
+      'type' => 'NUMERIC'
+    ];
+
+    $query->set('meta_query', $meta_query);
+  }
+
+  if ($query->get('post_type') === 'logement' && !empty(get_query_var('prix_max'))) {
+    $meta_query = $query->get('meta_query', []);
+    $meta_query[] = [
+      'key' => 'hcf-prix_logement',
+      'value' => get_query_var('prix_max'),
+      'compare' => '>=',
+      'type' => 'NUMERIC'
+    ];
+
+    $query->set('meta_query', $meta_query);
+  }
+
+
+  if ($query->get('post_type') === 'logement' && !empty(get_query_var('personne_min'))) {
+    $meta_query = $query->get('meta_query', []);
+    $meta_query[] = [
+      'key' => 'hcf-nb_pers',
+      'value' => get_query_var('personne_min'),
+      'compare' => '>=',
+      'type' => 'NUMERIC'
+    ];
+
+    $query->set('meta_query', $meta_query);
+  }
+
+  if ($query->get('post_type') === 'logement' && !empty(get_query_var('ville'))) {
+    $meta_query = $query->get('meta_query', []);
+    $meta_query[] = [
+      'key' => 'hcf-ville_logement',
+      'value' => get_query_var('ville'),
+      'compare' => '=',
+      'type' => 'TEXT'
+    ];
+
+    $query->set('meta_query', $meta_query);
+  }
+
+  if ($query->get('post_type') === 'logement' && !empty(get_query_var('type'))) {
+    $meta_query = $query->get('meta_query', []);
+    $meta_query[] = [
+      'key' => 'hcf-logement_type',
+      'value' => get_query_var('type'),
+      'compare' => '=',
+      'type' => 'TEXT'
+    ];
+
+    $query->set('meta_query', $meta_query);
+  }
+
+});
+
+
+
+
+//'hcf-description',
+//    'hcf-logement_type',
+//    'hcf-espace',
+//    'hcf-nb_lit',
+//    'hcf-nb_sdb',
+//    'hcf-nb_pers',
+//    'hcf-adresse_logement',
+//    'hcf-ville_logement',
+//    'hcf-prix_logement',
+//    'hcf-proprio_type',
+//    'hcf-pictures',
