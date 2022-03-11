@@ -15,7 +15,7 @@
         <textarea name="hcf-description" rows="8" cols="80" id="hcf-description"><?php echo esc_attr( get_post_meta( get_the_ID(), 'hcf-description', true ) ); ?></textarea>
     </p>
     <p class="meta-options hcf_field">
-        <label for="hcf-logement_type">Type de logement</label>
+        <label>Type de logement</label>
 
         <input type="radio" name="hcf-logement_type" value="Appartement" <?php esc_attr( get_post_meta( get_the_ID(), 'hcf-logement_type', true ) ) === 'Appartement'? 'checked' : '' ?> >Appartement</input>
         <input type="radio" name="hcf-logement_type" value="Maison" <?php esc_attr( get_post_meta( get_the_ID(), 'hcf-logement_type', true ) ) === 'Maison'? 'checked' : '' ?>>Maison</input>
@@ -49,6 +49,7 @@
 
     <p class="meta-options hcf_field">
      <label for="">Services</label>
+     <input type="text" name="" value="">
     </p>
 
     <p class="meta-options hcf_field">
@@ -66,6 +67,11 @@
       <label for="hcf-proprio_type">Vous êtes ...</label>
       <input type="radio" name="hcf-proprio_type" value="Particulier" <?php esc_attr( get_post_meta( get_the_ID(), 'hcf-proprio_type', true ) ) === 'Appartement'? 'checked' : '' ?> >Particulier</input>
       <input type="radio" name="hcf-proprio_type" value="Professionnel" <?php esc_attr( get_post_meta( get_the_ID(), 'hcf-proprio_type', true ) ) === 'Maison'? 'checked' : '' ?>>Professionnel</input>
+  </p>
+
+  <p class="meta-options hcf_field">
+    <label for="hcf-pictures">Photos</label>
+    <input multiple id="hcf-pictures" name="hcf-pictures" type="file">
   </p>
 
 
