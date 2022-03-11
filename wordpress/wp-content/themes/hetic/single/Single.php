@@ -71,9 +71,16 @@ if ($query->have_posts()){
                  foreach ( $comments as $comment ) {
                      ?>
                      <div class="c-comments_card">
-                          <p><?= $comment->comment_author ?></p>
-                          <p><?= $comment->comment_content ?></p>
-                          <p><?= $comment->comment_date ?></p>
+                          <div class="top_comment">
+                               <div class="icon_comment">
+                                    <a href="https://www.flaticon.com/free-icons/profile" title="profile icons"></a>
+                               </div>
+                               <span><?= $comment->comment_author ?></span>
+                          </div>
+                          <div class="text_comments">
+                               <p><?= $comment->comment_content ?></p>
+                               <span>Publié le <?= $comment->comment_date ?></span>
+                          </div>
                      </div>
 
                      <?php
@@ -84,13 +91,10 @@ if ($query->have_posts()){
           <div class="c-form_comments">
                <h2>Mettre un commentaire ?</h2>
                <form class="" action="index.html" method="post">
-                    <div class="c-input">
-                         <label for="comment_title">Titre</label>
-                         <input type="text" name="comment_title" value="">
-                    </div>
+
 
                     <div class="c-input">
-                         <label for="comment_drescription">Commentaire</label>
+                         <label for="comment_drescription">Votre commentaire</label>
                          <textarea type="text" name="comment_drescription" value="" maxlength="500"></textarea>
                     </div>
 
@@ -98,7 +102,7 @@ if ($query->have_posts()){
                     <input type="hidden" name="action" value="add_logement_comment" />
                     <?php wp_nonce_field('add_logement_comment', 'add_logement_nonce'); ?>
 
-                    <button type="submit" name="button">Publier</button>
+                    <button type="submit" name="button"  class="c-btn is__orange">Publier</button>
                </form>
           </div>
 
