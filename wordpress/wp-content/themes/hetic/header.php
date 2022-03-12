@@ -22,11 +22,11 @@
         <h1><a href="<?php bloginfo('url'); ?>"><?php bloginfo('name'); ?></a></h1>
         <?php endif; ?>
         <?php if(is_user_logged_in()){ ?>
-          <a class="btn btn-warning" href="<?= home_url('/ajout-logement')?> ">Ajouter un logement</a>
+          <a class="c-btn is__orange" href="<?= home_url('/ajout-logement')?> ">Ajouter un logement</a>
           <?php
           if(current_user_can('administrator')){
             ?>
-              <a class="btn btn-danger" href="<?= home_url('/moderation')?> ">Moderation</a>
+              <a class="c-btn is__brown" href="<?= home_url('/moderation')?> ">Moderation</a>
             <?php
           }
         }else {

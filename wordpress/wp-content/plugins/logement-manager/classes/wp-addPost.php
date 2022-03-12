@@ -18,15 +18,16 @@ class Wp_addPost
   public function generateForm(){
     ob_start();
     ?>
+    <h1>Poster votre nouvelle annonce de bien </h1>
       <form class="" action="<?= admin_url('admin-post.php'); ?>" method="post" enctype="multipart/form-data">
           <p class="meta-options hcf_field">
               <label for="hcf-title">Titre de l'annonce</label>
-              <input type="text" name="hcf-title" id="hcf-title"></input>
+              <input type="text" name="hcf-title" id="hcf-title" placeholder="Appartement à Paris"></input>
           </p>
 
           <p class="meta-options hcf_field">
               <label for="hcf-description">Description</label>
-              <textarea name="hcf-description" rows="8" cols="80" id="hcf-description"></textarea>
+              <textarea name="hcf-description" rows="8" cols="80" id="hcf-description" placeholder="Un peu de blabla sur votre logement"></textarea>
           </p>
           <p class="meta-options hcf_field">
               <label for="hcf-logement_type">Type de logement</label>
@@ -47,17 +48,17 @@ class Wp_addPost
 
           <p class="meta-options hcf_field">
             <label for="hcf-nb_lit">Nombre de lits</label>
-            <input type="text" name="hcf-nb_lit" id="hcf-nb_lit" value="">
+            <input type="text" name="hcf-nb_lit" id="hcf-nb_lit" value="" placeholder="3">
           </p>
 
           <p class="meta-options hcf_field">
               <label for="hcf-nb_sdb">Nombre de salle de bain</label>
-              <input type="text" name="hcf-nb_sdb" id="hcf-nb_sdb" value="">
+              <input type="text" name="hcf-nb_sdb" id="hcf-nb_sdb" value="" placeholder="2">
           </p>
 
           <p class="meta-options hcf_field">
               <label for="hcf-nb_pers">Nombre de personne pouvant être accueillis</label>
-              <input type="text" name="hcf-nb_pers" id="hcf-nb_pers" value="">
+              <input type="text" name="hcf-nb_pers" id="hcf-nb_pers" value="" placeholder="5">
           </p>
 
 
@@ -67,13 +68,13 @@ class Wp_addPost
 
           <p class="meta-options hcf_field">
              <label for="hcf-adresse_logement">Adresse du logement</label>
-             <input type="text" name="hcf-adresse_logement" id="hcf-adresse_logement" value="">
+             <input type="text" name="hcf-adresse_logement" id="hcf-adresse_logement" value="" placeholder="81 rue des Pins">
              <label for="hcf-ville_logement">Ville du logement</label>
-             <input type="text" name="hcf-ville_logement" id="hcf-ville_logement" value="">
+             <input type="text" name="hcf-ville_logement" id="hcf-ville_logement" value="" placeholder="Paris">
           </p>
           <p class="meta-options hcf_field">
             <label for="hcf-prix_logement">Prix du logement par nuit</label>
-            <input type="text" name="hcf-prix_logement" id="hcf-prix_logement" value="">
+            <input type="text" name="hcf-prix_logement" id="hcf-prix_logement" value="" placeholder="50€s">
           </p>
 
           <p class="meta-options hcf_field">
@@ -83,14 +84,14 @@ class Wp_addPost
         </p>
 
         <p class="meta-options hcf_field">
-          <label for="hcf-picture">Photos</label>
+          <label for="hcf-picture">Une photo ?</label>
           <input id="hcf-picture" name="hcf-picture" type="file" multiple="false">
         </p>
 
         <input type="hidden" name="action" value="hcf_logement_post">
         <?php wp_nonce_field('hcf_logement_post', 'hcf_logement_nonce'); ?>
 
-        <button type="submit">Poster</button>
+        <button type="submit" class="c-btn is__orange">Poster</button>
 
 
       </form>
