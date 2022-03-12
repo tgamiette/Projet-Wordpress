@@ -5,6 +5,8 @@
 function wpbootstrap_after_setup_theme() {
   // On ajoute un menu
   register_nav_menu('header_menu', "Menu du header");
+  register_nav_menu('footer_menu', "Menu du footer");
+
   // On ajoute une classe php permettant de gérer les menus Bootstrap
 //  require_once get_template_directory() . 'class-wp-bootstrap-navwalker.php';
 

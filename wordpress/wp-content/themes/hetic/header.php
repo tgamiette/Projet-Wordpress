@@ -14,28 +14,51 @@
   <!-- Header -->
   <header class="blog-header py-3">
     <div class="row flex-nowrap justify-content-between align-items-center">
-      <div class="col-12 text-center">
+      <div class="c-nav text-center">
         <!-- <a class="blog-header-logo text-dark" href="<?php bloginfo('url'); ?>"><?php bloginfo('name') ?></a> -->
-        <?php if(has_custom_logo()) : ?>
-        <?php the_custom_logo(); ?>
-        <?php else : ?>
-        <h1><a href="<?php bloginfo('url'); ?>"><?php bloginfo('name'); ?></a></h1>
-        <?php endif; ?>
-        <?php if(is_user_logged_in()){ ?>
-          <a class="c-btn is__orange" href="<?= home_url('/ajout-logement')?> ">Ajouter un logement</a>
+        <div class="c-logo">
+         <?php if(has_custom_logo()) : ?>
+         <?php the_custom_logo(); ?>
+         <?php else : ?>
+         <h1><a href="<?php bloginfo('url'); ?>"><?php bloginfo('name'); ?></a></h1>
+         <?php endif; ?>
+        </div>
+        <div class="c-link">
           <?php
-          if(current_user_can('administrator')){
-            ?>
-              <a class="c-btn is__brown" href="<?= home_url('/moderation')?> ">Moderation</a>
+          wp_nav_menu(array(
+            'theme_location'    => 'header_menu',
+            'items_wrap'     => '%3$s',
+            'container'      => false,
+            'depth'          => 1,
+            'link_before'    => '<span>',
+            'link_after'     => '</span>',
+            'fallback_cb'    => false,
+          ));
+          ?>
+        </div>
+
+        <div class="c-right_header">
+          <?php if(is_user_logged_in()){ ?>
+            <a class="c-btn is__orange" href="<?= home_url('/ajout-logement')?> ">Ajouter un logement</a>
             <?php
+            if(current_user_can('administrator')){
+              ?>
+                <a class="c-btn is__brown" href="<?= home_url('/moderation')?> ">Moderation</a>
+              <?php
+            }
+          }else {
+            return null;
           }
-        }else {
-          return null;
-        }
-        ?>
+          ?>
+        </div>
+
+        </div>
       </div>
     </div>
   </header>
+</div>
+<div class="sub-header"></div>
+
   <!-- Fin du header -->
 
   <!-- Menu header -->

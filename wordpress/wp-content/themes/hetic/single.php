@@ -44,7 +44,7 @@
 
  ?>
 
-      <div class="comments_section">
+      <div class="comments_section container">
 
            <div class="c-comments">
                 <h3>Les commentaires</h3>

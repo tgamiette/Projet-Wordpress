@@ -20,25 +20,7 @@
 
 	<footer id="colophon" class="site-footer">
 
-		<?php if ( has_nav_menu( 'footer' ) ) : ?>
-			<nav aria-label="<?php esc_attr_e( 'Secondary menu', 'twentytwentyone' ); ?>" class="footer-navigation">
-				<ul class="footer-navigation-wrapper">
-					<?php
-					wp_nav_menu(
-						array(
-							'theme_location' => 'footer',
-							'items_wrap'     => '%3$s',
-							'container'      => false,
-							'depth'          => 1,
-							'link_before'    => '<span>',
-							'link_after'     => '</span>',
-							'fallback_cb'    => false,
-						)
-					);
-					?>
-				</ul><!-- .footer-navigation-wrapper -->
-			</nav><!-- .footer-navigation -->
-		<?php endif; ?>
+
 		<div class="site-info">
 			<div class="site-name">
 				<?php if ( has_custom_logo() ) : ?>
@@ -54,11 +36,27 @@
 				<?php endif; ?>
 			</div><!-- .site-name -->
 
-			<?php
-			if ( function_exists( 'the_privacy_policy_link' ) ) {
-				the_privacy_policy_link( '<div class="privacy-policy">', '</div>' );
-			}
-			?>
+			<?php if ( has_nav_menu( 'footer_menu' ) ) : ?>
+				<nav class="footer-navigation">
+					<ul class="footer-navigation-wrapper">
+						<?php
+						wp_nav_menu(
+							array(
+								'theme_location' => 'footer_menu',
+								'items_wrap'     => '%3$s',
+								'container'      => false,
+								'depth'          => 1,
+								'link_before'    => '<span>',
+								'link_after'     => '</span>',
+								'fallback_cb'    => false,
+							)
+						);
+						?>
+						<li>	<a href="mailto:">Nous envoyer un mail</a></li>
+						<li><a href="tel:0651550761">Nous appeler</a></li>
+					</ul><!-- .footer-navigation-wrapper -->
+				</nav><!-- .footer-navigation -->
+			<?php endif; ?>
 
 
 

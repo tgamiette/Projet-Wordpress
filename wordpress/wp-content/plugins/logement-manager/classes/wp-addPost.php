@@ -18,7 +18,9 @@ class Wp_addPost
   public function generateForm(){
     ob_start();
     ?>
-    <h1>Poster votre nouvelle annonce de bien </h1>
+    <div class="container">
+        <h1>Poster votre nouvelle annonce de bien </h1>
+
       <form class="" action="<?= admin_url('admin-post.php'); ?>" method="post" enctype="multipart/form-data">
           <p class="meta-options hcf_field">
               <label for="hcf-title">Titre de l'annonce</label>
@@ -95,6 +97,7 @@ class Wp_addPost
 
 
       </form>
+      </div>
     <?php
 
     return ob_get_clean();
