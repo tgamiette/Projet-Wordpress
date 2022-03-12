@@ -4,7 +4,7 @@
 
 /**
  * Template Name: Modèle moderation
- * Template Post Type: page,post
+ * Template Post Type: page
  */
 
 $query_posts = new WP_Query(array(

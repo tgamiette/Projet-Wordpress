@@ -4,7 +4,7 @@
  <?php
  /**
   * Template Name: Modèle single
-  * Template Post Type: page, post
+  * Template Post Type: post
   */
 
 
