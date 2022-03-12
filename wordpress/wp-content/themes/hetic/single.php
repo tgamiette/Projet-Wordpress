@@ -70,7 +70,7 @@
 
                      <?php
                  }
-                ?>
+             ?>
           </div>
 
           <div class="c-form_comments">

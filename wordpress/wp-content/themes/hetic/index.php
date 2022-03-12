@@ -2,10 +2,12 @@
 <?php get_header(); ?>
 <?php
 
-
+$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 $query = new WP_Query(array(
     'post_type' => 'logement',
-    'post_status' => 'publish'
+    'post_status' => 'publish',
+    'posts_per_page' => 3,
+    'paged' => $paged
 ));
 ?>
 <div class="container-home">
@@ -32,7 +34,11 @@ $query = new WP_Query(array(
         <?php
         }
 
-        ?> </div>
+        if (function_exists("cpt_pagination")) {
+            cpt_pagination($query->max_num_pages);
+        }
+    ?>
+    </div>
 
         <div class="c-comments">
                <h3>Les derniers avis</h3>
