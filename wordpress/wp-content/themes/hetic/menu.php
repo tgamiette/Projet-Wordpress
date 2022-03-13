@@ -7,9 +7,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <?php wp_nav_menu([
-                'theme_location' => 'header',
+                'theme_location' => 'header_menu',
                 'container' => false,
-                'menu_class' => "navbar-nav me-auto mb-2 mb-lg-0"
+                'menu_class' => "navbar-nav me-auto mb-2 mb-lg-0",
+                'depth'          => 1,
+                'link_before'    => '<span>',
+                'link_after'     => '</span>',
+                'fallback_cb'    => false,
             ]); ?>
             <?php if (is_user_logged_in()) : ?>
                 <a class="nav-link" href="<?= home_url('/ajout-logement') ?> ">Ajouter un logement </a>
@@ -20,7 +24,7 @@
 
             <?php get_search_form(); ?>
             <?php if (is_user_logged_in()) : ?>
-                <li class="nav-item"><a class="nav-link" href="/wp-login.php?action=logout">Deconnexion </a></li>
+                <li class="nav-item"><a class="nav-link" href="/wp-login.php?action=logout">Déconnexion </a></li>
             <?php endif ?>
             <?php if (!is_user_logged_in()) : ?>
                 <li class="nav-item"><a class="nav-link" href="<?= home_url("/inscription.php") ?>"> S'inscrire</a></li>
