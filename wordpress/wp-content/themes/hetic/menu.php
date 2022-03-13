@@ -19,6 +19,7 @@
                 'link_after'     => '</span>',
                 'fallback_cb'    => false,
             ));
+            get_search_form();
             ?>
         </div>
 
@@ -31,10 +32,15 @@
                     <a class="c-btn is__brown" href="<?= home_url('/moderation')?> ">Moderation</a>
                     <?php
                 }
-            }else {
-                return null;
             }
             ?>
+            <?php if (is_user_logged_in()) : ?>
+                <li class="nav-item"><a class="c-btn is__brown" href="/wp-login.php?action=logout">Deconnexion </a></li>
+            <?php endif ?>
+            <?php if (!is_user_logged_in()) : ?>
+                <li class="nav-item"><a class="c-btn is__brown" href="<?= home_url("/inscription.php") ?>"> S'inscrire</a></li>
+                <li class="nav-item"><a class="c-btn is__brown" href="<?= home_url("/wp-login.php") ?>"> Se connecter </a></li>
+            <?php endif; ?>
         </div>
 
     </div>
