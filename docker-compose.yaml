@@ -24,6 +24,7 @@ services:
             MYSQL_PASSWORD: azerty
         volumes:
             - datas:/var/lib/mysql
+            - ./DumpSQL/app.sql:/docker-entrypoint-initdb.d/data.sql
 
     phpmyadmin:
         image: phpmyadmin:latest
@@ -37,4 +38,4 @@ services:
             - PMA_ARBITRARY=1
 
 volumes:
-    datas:
+     datas:
