@@ -23,8 +23,8 @@
                 <li class="nav-item"><a class="nav-link" href="/wp-login.php?action=logout">Deconnexion </a></li>
             <?php endif ?>
             <?php if (!is_user_logged_in()) : ?>
-                <li class="nav-item"><a class="nav-link" href="<?= get_template_directory_uri("inscription.php") ?>"S'inscrire</a></li>
-                <li class="nav-item"><a class="nav-link" href="/wp-login.php">Se connecter </a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= home_url("/inscription.php") ?>"> S'inscrire</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= home_url("/wp-login.php") ?>"> Se connecter </a></li>
             <?php endif; ?>
 
         </div>
