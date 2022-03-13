@@ -83,5 +83,5 @@ $query = new WP_Query(array(
 ?>
 
 
-<?php get_template_part('body'); ?>
+<!-- <?php get_template_part('body'); ?> -->
 <?php get_footer(); ?>

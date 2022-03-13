@@ -26,9 +26,9 @@
                      <p class="card-text"><?= get_post_meta( get_the_ID(), 'hcf-description', true ) ?></p>
 
 
-                     <p class="card-text"><?= get_post_meta( get_the_ID(), 'hcf-adresse_logement', true ) ?></p>
+                     <p class="card-text">Adresse: <?= get_post_meta( get_the_ID(), 'hcf-adresse_logement', true ) ?></p>
 
-                     <p class="card-text"><?= get_post_meta( get_the_ID(), 'hcf-prix_logement', true ) ?>€/nuit</p>
+                     <p class="card-text">Prix: <?= get_post_meta( get_the_ID(), 'hcf-prix_logement', true ) ?>€/nuit</p>
 
                 </div>
              </div>
@@ -80,9 +80,20 @@
              ?>
           </div>
 
+
+
           <div class="c-form_comments">
-               <h2>Mettre un commentaire ?</h2>
-               <form class="" action="index.html" method="post">
+               <?php
+          	comment_form(
+          		array(
+          			'title_reply'        => esc_html__( 'Laissez un commentaire', 'hetic' ),
+          			'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title">',
+          			'title_reply_after'  => '</h2>',
+                         'class_submit' => 'c-btn is__orange'
+          		)
+          	);
+          	?>
+               <!-- <form class="" action="index.html" method="post">
 
 
                     <div class="c-input">
@@ -95,7 +106,7 @@
                     <?php wp_nonce_field('add_logement_comment', 'add_logement_nonce'); ?>
 
                     <button type="submit" name="button"  class="c-btn is__orange">Publier</button>
-               </form>
+               </form> -->
           </div>
 
      </div>

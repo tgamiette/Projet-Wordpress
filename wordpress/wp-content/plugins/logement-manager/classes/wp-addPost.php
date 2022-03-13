@@ -63,11 +63,6 @@ class Wp_addPost
               <input type="text" name="hcf-nb_pers" id="hcf-nb_pers" value="" placeholder="5">
           </p>
 
-
-          <p class="meta-options hcf_field">
-           <label for="">Services</label>
-          </p>
-
           <p class="meta-options hcf_field">
              <label for="hcf-adresse_logement">Adresse du logement</label>
              <input type="text" name="hcf-adresse_logement" id="hcf-adresse_logement" value="" placeholder="81 rue des Pins">

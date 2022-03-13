@@ -46,12 +46,6 @@
         <input type="text" name="hcf-nb_pers" id="hcf-nb_pers" value="<?php echo esc_attr( get_post_meta( get_the_ID(), 'hcf-nb_pers', true ) ); ?>">
     </p>
 
-
-    <p class="meta-options hcf_field">
-     <label for="">Services</label>
-     <input type="text" name="" value="">
-    </p>
-
     <p class="meta-options hcf_field">
        <label for="hcf-adresse_logement">Adresse du logement</label>
        <input type="text" name="hcf-adresse_logement" id="hcf-adresse_logement" value="<?php echo esc_attr( get_post_meta( get_the_ID(), 'hcf-adresse_logement', true ) ); ?>">
