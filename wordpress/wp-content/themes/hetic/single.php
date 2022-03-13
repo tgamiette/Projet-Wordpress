@@ -52,7 +52,7 @@
                 $args = array(
                      'post_id' => get_the_ID(),
                 );
-                $comments = get_comments( $args );
+                $comments = get_approved_comments( get_the_ID() );
                  if(!empty($comments)){
                       foreach ( $comments as $comment ) {
                           ?>
