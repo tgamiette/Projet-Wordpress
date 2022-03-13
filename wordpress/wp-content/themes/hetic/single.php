@@ -4,7 +4,7 @@
  <?php
  /**
   * Template Name: Modèle single
-  * Template Post Type: post
+  * Template Post Type: post, page
   */
 
 
@@ -83,30 +83,27 @@
 
 
           <div class="c-form_comments">
+
                <?php
-          	comment_form(
-          		array(
-          			'title_reply'        => esc_html__( 'Laissez un commentaire', 'hetic' ),
-          			'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title">',
-          			'title_reply_after'  => '</h2>',
-                         'class_submit' => 'c-btn is__orange'
-          		)
-          	);
+
+               if ( is_user_logged_in() ) {
+                    comment_form(
+              		array(
+              			'title_reply'        => esc_html__( 'Laissez un commentaire', 'hetic' ),
+              			'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title">',
+              			'title_reply_after'  => '</h2>',
+                             'class_submit' => 'c-btn is__orange'
+              		)
+              	);
+              }else{
+                   ?>
+                    <h2>Laissez un commentaire </h2>
+                    <p>Vous devez vous connecter ou vous inscrire pour pouvoir mettre un commentaire </p>
+                   <?php
+              }
+
           	?>
-               <!-- <form class="" action="index.html" method="post">
 
-
-                    <div class="c-input">
-                         <label for="comment_drescription">Votre commentaire</label>
-                         <textarea type="text" name="comment_drescription" value="" maxlength="500"></textarea>
-                    </div>
-
-
-                    <input type="hidden" name="action" value="add_logement_comment" />
-                    <?php wp_nonce_field('add_logement_comment', 'add_logement_nonce'); ?>
-
-                    <button type="submit" name="button"  class="c-btn is__orange">Publier</button>
-               </form> -->
           </div>
 
      </div>

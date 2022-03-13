@@ -10,10 +10,16 @@ $query = new WP_Query(array(
     'paged' => $paged
 ));
 ?>
+<div class="c-search container">
+    <?php
+    get_search_form(); ?>
+</div>
 <div class="container-home">
+
     <?php
     if($query->have_posts()){
         ?>
+
         <div class="card-group container">
         <?php
         while ($query->have_posts()) {
@@ -57,9 +63,11 @@ $query = new WP_Query(array(
                                      <img src="http://localhost:8080/wp-content/uploads/2022/03/user.png"/>
                                  </div>
                                  <span><?= $comment->comment_author ?></span>
+
                             </div>
                             <div class="text_comments">
                                  <p><?= $comment->comment_content ?></p>
+                                 <p><?= get_comment_id()?></p>
                                  <span><b>Publié le </b><?= $comment->comment_date ?></span>
                             </div>
                        </div>

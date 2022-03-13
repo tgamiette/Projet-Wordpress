@@ -171,10 +171,10 @@ add_action( 'admin_post_update_logement_post', 'updatePost' );
 
 //Update comments
 
-function updateComments() {
+function update_comment_post() {
   if(current_user_can('administrator')){
     if(wp_verify_nonce($_REQUEST['update_comment_nonce'], 'update_comment_post')){
-      $post_args = array(
+      $args = array(
         'ID' => $_POST['update_comment_id'],
         'comment_approved' => 'approve'
       );
@@ -182,7 +182,7 @@ function updateComments() {
       if($_POST['btn-publish']){
           wp_set_comment_status($post_args);
       }else if ($_POST['btn-delete']){
-        wp_delete_comment($_POST['update_post_id']);
+          wp_delete_comment($_POST['update_comment_id']);
       }
       wp_redirect(home_url('/moderation'));
     }else{
@@ -193,7 +193,7 @@ function updateComments() {
   }
 }
 
-add_action( 'admin_post_update_logement_post', 'updateComments' );
+add_action( 'delete_comment', 'update_comment_post' );
 
 
 // custom_pagination

@@ -117,6 +117,23 @@ input[type="file"]::file-selector-button{
 }
 
 
+.btn-post, .btn-comment{
+    border: 2px solid #fca851;
+    background: transparent;
+    color: #fca851;
+    transition: 0.2s ease-in;
+}
+
+.btn-post:hover, .btn-comment:hover{
+    background: #fca85140;
+}
+.btn-post.active, .btn-comment.active{
+    background: #fca85150;
+}
+
+
+
+
 
 .display-4 {
     font-size: 2.5rem;
@@ -127,7 +144,7 @@ input[type="file"]::file-selector-button{
     }
 }
 
-body > .container:first-child{
+.blog-header.py-3{
     margin: 0;
     position: fixed;
     padding: 0;
@@ -136,6 +153,7 @@ body > .container:first-child{
     z-index: 100;
     background: White;
     max-width: 5000px;
+    padding: 0px 60px;
 }
 .sub-header{
     height: 120px;
@@ -290,6 +308,10 @@ header{
 
 /* HOME */
 
+.home > .container:first-child{
+   max-width: 5000px!important;
+}
+
 .container-home{
     display: grid;
     grid-template-columns: 1fr 0.5fr;
@@ -424,4 +446,10 @@ td{
     border: 1px solid #afafaf;
     padding: 10px 20px;
     height: 80px;
+}
+
+.c-search{
+   padding: 0 60px;
+   margin: 0 0 40px 0;
+   width: 40%;
 }

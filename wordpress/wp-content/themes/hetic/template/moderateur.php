@@ -23,8 +23,8 @@ if(current_user_can('administrator')){
 
     <div class="c-moderation container">
 
-      <button type="button" name="button" class="btn-post">Les posts</button>
-      <button type="button" name="button" class="btn-comment">Les commentaires</button>
+      <button type="button" name="button" class="c-btn btn-post active">Les posts</button>
+      <button type="button" name="button" class="c-btn btn-comment">Les commentaires</button>
 
       <div class="c-moderation_post">
         <?php
@@ -90,11 +90,11 @@ if(current_user_can('administrator')){
                      <td><?= $comment->comment_content ?></td>
                      <td><?= $comment->comment_date ?></td>
                      <td>
-                       <form action="<?= admin_url('admin-post.php'); ?>" method="post">
+                       <form action="<?php echo esc_url( home_url() ); ?>" method="post">
 
                          <input type="submit" name="btn-publish" class="c-btn is__orange" value='Publier'/>
                          <input type="submit" name="btn-delete" class="c-btn is__brown"  value='Supprimer'/>
-                         <input type="hidden" name="update_post_id" value="<?php the_ID(); ?>">
+                         <input type="hidden" name="update_comment_id" value="<?php get_comment_id()?> ?>">
                          <input type="hidden" name="action" value="update_comment_post" />
                          <?php wp_nonce_field('update_comment_post', 'update_comment_nonce'); ?>
                        </form>
