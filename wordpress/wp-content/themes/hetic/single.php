@@ -53,23 +53,30 @@
                      'post_id' => get_the_ID(),
                 );
                 $comments = get_comments( $args );
-                 foreach ( $comments as $comment ) {
-                     ?>
-                     <div class="c-comments_card">
-                          <div class="top_comment">
-                               <div class="icon_comment">
-                                    <img src="http://localhost:8080/wp-content/uploads/2022/03/user.png"/>
+                 if(!empty($comments)){
+                      foreach ( $comments as $comment ) {
+                          ?>
+                          <div class="c-comments_card">
+                               <div class="top_comment">
+                                    <div class="icon_comment">
+                                         <img src="http://localhost:8080/wp-content/uploads/2022/03/user.png"/>
+                                    </div>
+                                    <span><?= $comment->comment_author ?></span>
                                </div>
-                               <span><?= $comment->comment_author ?></span>
+                               <div class="text_comments">
+                                    <p><?= $comment->comment_content ?></p>
+                                    <span>Publié le <?= $comment->comment_date ?></span>
+                               </div>
                           </div>
-                          <div class="text_comments">
-                               <p><?= $comment->comment_content ?></p>
-                               <span>Publié le <?= $comment->comment_date ?></span>
-                          </div>
-                     </div>
 
-                     <?php
+                          <?php
+                      }
                  }
+                 else {
+                      ?>
+                      <p>Aucun commentaires n'a encore été posté</p>
+                      <?php
+               }
              ?>
           </div>
 

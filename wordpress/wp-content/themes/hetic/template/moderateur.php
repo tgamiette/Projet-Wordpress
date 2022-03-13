@@ -19,10 +19,13 @@ $comments = get_comments($args);
 
 if(current_user_can('administrator')){
   ?>
-    <button type="button" name="button" class="btn-post">Les posts</button>
-    <button type="button" name="button" class="btn-comment">Les commentaires</button>
+    <h1><?php the_content() ?></h1>
 
-    <div class="c-moderation">
+    <div class="c-moderation container">
+
+      <button type="button" name="button" class="btn-post">Les posts</button>
+      <button type="button" name="button" class="btn-comment">Les commentaires</button>
+
       <div class="c-moderation_post">
         <?php
         if($query_posts->have_posts()){

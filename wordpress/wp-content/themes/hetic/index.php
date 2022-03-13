@@ -48,24 +48,31 @@ $query = new WP_Query(array(
                     'number' => '3'
                );
                $comments = get_comments( $args );
-                foreach ( $comments as $comment ) {
-                    ?>
-                    <div class="c-comments_card">
-                         <div class="top_comment">
-                              <div class="icon_comment">
-                                  <img src="http://localhost:8080/wp-content/uploads/2022/03/user.png"/>
-                              </div>
-                              <span><?= $comment->comment_author ?></span>
-                         </div>
-                         <div class="text_comments">
-                              <p><?= $comment->comment_content ?></p>
-                              <span><b>Publié le </b><?= $comment->comment_date ?></span>
-                         </div>
-                    </div>
+               if(!empty($comments)){
+                   foreach ( $comments as $comment ) {
+                       ?>
+                       <div class="c-comments_card">
+                            <div class="top_comment">
+                                 <div class="icon_comment">
+                                     <img src="http://localhost:8080/wp-content/uploads/2022/03/user.png"/>
+                                 </div>
+                                 <span><?= $comment->comment_author ?></span>
+                            </div>
+                            <div class="text_comments">
+                                 <p><?= $comment->comment_content ?></p>
+                                 <span><b>Publié le </b><?= $comment->comment_date ?></span>
+                            </div>
+                       </div>
 
-                    <?php
-                }
-               ?>
+                       <?php
+                   }
+
+               }else{
+                   ?>
+                    <p>Aucun commentaires n'a encore été posté</p>
+                   <?php
+               }
+        ?>
          </div>
         <?php
     }

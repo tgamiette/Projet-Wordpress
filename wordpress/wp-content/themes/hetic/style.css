@@ -24,7 +24,9 @@ Version: OMEGA
 } */
 
 h1{
-    margin: 20px;
+    margin: 0px 0px 30px 0px;
+    text-align: center;
+
 }
 
 .c-btn{
@@ -292,6 +294,7 @@ header{
 .container-home{
     display: grid;
     grid-template-columns: 1fr 0.5fr;
+    padding: 0 50px;
 }
 
 .container-home .card-group{
