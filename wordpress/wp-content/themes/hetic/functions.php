@@ -230,3 +230,40 @@ function cpt_pagination($pages = '', $range = 5){
             echo "</ul></nav>\n";
         }
   }
+
+
+function save_user()
+{
+    if (!wp_verify_nonce($_POST['random_nonce'], 'random_action')) {
+        die("erreur nonce invalide ");
+    }
+    $username = substr($_POST['email'], 0, strpos($_POST['email'], "@"));
+    $user_array = array(
+        'user_email' => $_POST['email'],
+        'user_login' => $username,
+        'first_name' => $_POST['name'],
+        'last_name' => $_POST['lastname'],
+        'user_pass' => $_POST['password']
+    );
+    $id = wp_insert_user($user_array);
+
+    wp_update_user(array('ID' => $id, 'role' => $_POST['role']));
+    wp_redirect('/');
+}
+
+///redirection apres la connection
+function redirect_login($redirect, $b, $user)
+{
+    if (!is_wp_error($user) && in_array('logement_manager', (array)$user->roles)) {
+        return '/wp-admin';
+    } elseif (!is_wp_error($user) && in_array('subcriber', (array)$user->roles)) {
+        return '/';
+    }
+    return $redirect;
+}
+
+function ps_redirect_after_logout()
+{
+    wp_redirect('/');
+    exit();
+}
