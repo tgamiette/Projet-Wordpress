@@ -34,7 +34,7 @@
                     </label>
                 </div>
                 <div class="form-check">
-                    <input name="role" class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="editor">
+                    <input name="role" class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="logement_manager">
                     <label class="form-check-label" for="gridRadios2">
                         Loueur
                     </label>

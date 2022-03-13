@@ -1,5 +1,3 @@
-
-
 <?php $query = new WP_Query(array('post_type'   => 'logement',
                                   'post_status' => 'publish'));
 ?>
@@ -32,5 +30,6 @@
                 </div>
             </div>
         <?php endwhile; ?>
+        <?php the_posts_pagination(); ?>
     </div>
 <?php endif; ?>
