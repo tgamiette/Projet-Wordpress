@@ -68,7 +68,7 @@ function cptui_register_my_cpts_logement()
         "capability_type" => "post",
         "map_meta_cap" => true,
         "hierarchical" => false,
-        "rewrite" => ["slug" => "logement", "with_front" => true],
+        "rewrite" => ["slug" => "event", "with_front" => true],
         "query_var" => true,
         "supports" => ["title", "thumbnail", "comments"],
         "show_in_graphql" => false
@@ -267,7 +267,8 @@ add_action('pre_get_posts', function (WP_Query $query) {
         return;
     }
 
-    
+    var_dump(get_query_var('prix_max'));
+
     if ($query->get('post_type') === 'logement' && !empty(get_query_var('prix_min'))) {
         $meta_query = $query->get('meta_query', []);
         $meta_query[] = [
