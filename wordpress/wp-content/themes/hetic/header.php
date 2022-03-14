@@ -17,5 +17,20 @@
   </header>
 
 <div class="sub-header"></div>
+  <?php if (get_option('wphetic_banner_active') == 'true'): ?>
+      <div class="alert alert-danger"
+           style="color:<?= get_option('wphetic_banner_font_color') ?>;background:<?= get_option('wphetic_banner_bg_color') ?>"
+           role="alert"
+      <?php getoption('custom_header_banner'); ?>
+      </div>
+  <?php endif; ?>
+
+  <?php if (get_theme_mod('wphetic_promo_active') == 'true'): ?>
+      <div class="alert alert-warning alert-dismissible fade show"
+           style="color:<?= get_theme_mod('wphetic_promo_font_color') ?>;background:<?= get_theme_mod('wphetic_promo_bg_color') ?>"
+           role="alert">
+          <strong> <?= esc_html(get_theme_mod('wphetic_promo_label')) ?></strong>
+      </div>
+  <?php endif;?>
   <div class="container">
 

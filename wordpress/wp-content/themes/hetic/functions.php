@@ -326,3 +326,66 @@ add_action('pre_get_posts', function (WP_Query $query) {
     }
 
 });
+
+add_action('customize_register', function (WP_Customize_Manager $manager) {
+    $manager->add_section('wphetic_promo', [
+        'title' => 'Bannière promo (HETIC)',
+        'capability' => 'manage_logement',
+        'description' => 'Personnalisation de laa bannière hetic  dans le header'
+    ]);
+
+    $manager->add_setting('wphetic_promo_bg_color', [
+        'default' => '#d3d3d3',
+        'sanitize' => 'sanitize_hex_color'
+    ]);
+    $manager->add_control(new WP_Customize_Color_Control($manager, 'wphetic_promo_bg_color', [
+        'section' => 'wphetic_promo',
+        'label' => 'Couleur de fond de la bannière'
+    ]));
+    $manager->add_setting('wphetic_promo_font_color', [
+        'default' => '#d3d3d3',
+        'sanitize' => 'sanitize_hex_color'
+    ]);
+    $manager->add_control(new WP_Customize_Color_Control($manager, 'wphetic_promo_font_color', [
+        'section' => 'wphetic_promo',
+        'label' => 'Couleur  de la police'
+    ]));
+    $manager->add_setting('wphetic_promo_label');
+    $manager->add_control('wphetic_promo_label', [
+        'section' => 'wphetic_promo',
+        'label' => __("label", 'TextDomain')
+    ]);
+
+    $manager->add_setting('wphetic_promo_active');
+    $manager->add_control('wphetic_promo_active', [
+        'type' => 'checkbox',
+        'label' => 'Activation de la bannière',
+        'section' => 'wphetic_promo',
+    ]);
+});
+
+
+//custtom option logement
+add_filter('manage_logement_posts_columns', function ($col) {
+    return array(
+        'cb' => $col['cb'],
+        'title' => $col['title'],
+        'image' => 'Image',
+        'type' => 'Type',
+        'price' => 'prix',
+        'date' => $col['date']
+    );
+});
+add_action('manage_logement_posts_custom_column', function ($col, $postId) {
+    switch ($col) {
+        case price:
+            echo get_post_meta($postId, 'hcf-prix_logement', true) . "€";
+            break;
+        case image:
+            the_post_thumbnail('thumbnail', $postId);
+            break;
+        case type:
+            echo get_post_meta($postId, 'hcf-logement_type', true);
+            break;
+    }
+}, 10, 2);
