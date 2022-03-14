@@ -31,14 +31,14 @@
                     <a class="c-btn is__brown" href="<?= home_url('/moderation')?> ">Moderation</a>
                     <?php
                 }
-
-                ?>
-                    <a class="c-btn is__brown" href="/wp-login.php?action=logout">Deconnexion </a>
-                <?php
             }
-            if (!is_user_logged_in()) : ?>
-                <a class="c-btn is__brown" href="<?= home_url("/wp-login.php?action=register") ?>"> S'inscrire</a>
-                <a class="c-btn is__brown" href="<?= home_url("/wp-login.php") ?>"> Se connecter </a>
+            ?>
+            <?php if (is_user_logged_in()) : ?>
+                <li class="nav-item"><a class="c-btn is__brown" href="<?=  wp_logout_url('/')?>">Deconnexion </a></li>
+            <?php endif ?>
+            <?php if (!is_user_logged_in()) : ?>
+                <li class="nav-item"><a class="c-btn is__brown" href="<?= home_url("/inscription") ?>"> S'inscrire</a></li>
+                <li class="nav-item"><a class="c-btn is__brown" href="<?= home_url("/wp-login.php") ?>"> Se connecter </a></li>
             <?php endif; ?>
         </div>
 
