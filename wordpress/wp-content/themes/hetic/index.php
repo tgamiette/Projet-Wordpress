@@ -63,11 +63,9 @@ $query = new WP_Query(array(
                                      <img src="http://localhost:8080/wp-content/uploads/2022/03/user.png"/>
                                  </div>
                                  <span><?= $comment->comment_author ?></span>
-
                             </div>
                             <div class="text_comments">
                                  <p><?= $comment->comment_content ?></p>
-                                 <p><?= get_comment_id()?></p>
                                  <span><b>Publié le </b><?= $comment->comment_date ?></span>
                             </div>
                        </div>
