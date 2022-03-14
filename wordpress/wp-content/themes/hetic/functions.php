@@ -68,7 +68,7 @@ function cptui_register_my_cpts_logement()
         "capability_type" => "post",
         "map_meta_cap" => true,
         "hierarchical" => false,
-        "rewrite" => ["slug" => "logement", "with_front" => true],
+        "rewrite" => ["slug" => "event", "with_front" => true],
         "query_var" => true,
         "supports" => ["title", "thumbnail", "comments"],
         "show_in_graphql" => false
@@ -174,13 +174,8 @@ add_action( 'admin_post_update_logement_post', 'updatePost' );
 function updateComment() {
   if(current_user_can('administrator')){
     if(wp_verify_nonce($_REQUEST['update_comment_nonce'], 'update_comment_post')){
-      $args = array(
-        'comment_ID' => $_POST['update_comment_id'],
-        'comment_approved' => 'approve'
-      );
-
       if($_POST['btn-publish']){
-          wp_set_comment_status($post_args);
+          wp_set_comment_status($_POST['update_comment_id'], 'approve');
       }else if ($_POST['btn-delete']){
           wp_delete_comment($_POST['update_comment_id']);
       }
@@ -267,7 +262,7 @@ add_action('pre_get_posts', function (WP_Query $query) {
         return;
     }
 
-    
+
     if ($query->get('post_type') === 'logement' && !empty(get_query_var('prix_min'))) {
         $meta_query = $query->get('meta_query', []);
         $meta_query[] = [
