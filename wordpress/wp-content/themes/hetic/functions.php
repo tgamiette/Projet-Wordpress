@@ -1,5 +1,6 @@
 <?php
-//
+require 'Classes/BannerMessage.php';
+$banner = new BannerMessage();
 
 
 function wpbootstrap_after_setup_theme() {
