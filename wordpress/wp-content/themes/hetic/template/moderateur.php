@@ -85,16 +85,17 @@ if(current_user_can('administrator')){
             <?php
             foreach ( $comments as $comment ) {
               ?>
+
               <tr class="c-comment_table">
                      <td><?= $comment->comment_author ?></td>
                      <td><?= $comment->comment_content ?></td>
                      <td><?= $comment->comment_date ?></td>
                      <td>
-                       <form action="<?php echo esc_url( home_url() ); ?>" method="post">
+                       <form action="<?= admin_url('admin-post.php') ?>" method="post">
 
                          <input type="submit" name="btn-publish" class="c-btn is__orange" value='Publier'/>
                          <input type="submit" name="btn-delete" class="c-btn is__brown"  value='Supprimer'/>
-                         <input type="hidden" name="update_comment_id" value="<?php get_comment_id()?> ?>">
+                         <input type="hidden" name="update_comment_id" value="<?= $comment->comment_ID  ?>">
                          <input type="hidden" name="action" value="update_comment_post" />
                          <?php wp_nonce_field('update_comment_post', 'update_comment_nonce'); ?>
                        </form>

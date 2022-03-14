@@ -68,7 +68,7 @@ function cptui_register_my_cpts_logement()
         "capability_type" => "post",
         "map_meta_cap" => true,
         "hierarchical" => false,
-        "rewrite" => ["slug" => "event", "with_front" => true],
+        "rewrite" => ["slug" => "logement", "with_front" => true],
         "query_var" => true,
         "supports" => ["title", "thumbnail", "comments"],
         "show_in_graphql" => false
@@ -171,11 +171,11 @@ add_action( 'admin_post_update_logement_post', 'updatePost' );
 
 //Update comments
 
-function update_comment_post() {
+function updateComment() {
   if(current_user_can('administrator')){
     if(wp_verify_nonce($_REQUEST['update_comment_nonce'], 'update_comment_post')){
       $args = array(
-        'ID' => $_POST['update_comment_id'],
+        'comment_ID' => $_POST['update_comment_id'],
         'comment_approved' => 'approve'
       );
 
@@ -193,7 +193,7 @@ function update_comment_post() {
   }
 }
 
-add_action( 'delete_comment', 'update_comment_post' );
+add_action( 'admin_post_update_comment_post', 'updateComment' );
 
 
 // custom_pagination

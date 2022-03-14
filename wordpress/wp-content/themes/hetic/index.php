@@ -66,6 +66,7 @@ $query = new WP_Query(array(
                             </div>
                             <div class="text_comments">
                                  <p><?= $comment->comment_content ?></p>
+                                 <p><?= get_comment_ID() ?></p>
                                  <span><b>Publié le </b><?= $comment->comment_date ?></span>
                             </div>
                        </div>
