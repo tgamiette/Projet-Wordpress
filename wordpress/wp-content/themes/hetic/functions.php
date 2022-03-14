@@ -390,3 +390,24 @@ add_action('manage_logement_posts_custom_column', function ($col, $postId) {
             break;
     }
 }, 10, 2);
+
+//inscription de l'utilisateur
+function save_user()
+{
+    if (!wp_verify_nonce($_POST['random_nonce'], 'random_action')) {
+        die("erreur nonce invalide ");
+    }
+    $username = substr($_POST['email'], 0, strpos($_POST['email'], "@"));
+    $user_array = array(
+        'user_email' => $_POST['email'],
+        'user_login' => $username,
+        'first_name' => $_POST['name'],
+        'last_name' => $_POST['lastname'],
+        'user_pass' => $_POST['password']
+    );
+    $id = wp_insert_user($user_array);
+
+    wp_update_user(array('ID' => $id, 'role' => $_POST['role']));
+    wp_redirect('/');
+}
+add_action('admin_post_nopriv_wpinscription_form', 'save_user');
