@@ -156,7 +156,7 @@ input[type="file"]::file-selector-button{
     padding: 0px 60px;
 }
 .sub-header{
-    height: 120px;
+    height: 65px;
 }
 
 header{
@@ -452,4 +452,13 @@ td{
    padding: 0 60px;
    margin: 0 0 40px 0;
    width: 40%;
+}
+
+.alert{
+   min-height: 100px;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
+   margin-bottom: 50px;
 }
