@@ -230,3 +230,104 @@ function cpt_pagination($pages = '', $range = 5){
             echo "</ul></nav>\n";
         }
   }
+
+//redirection apres la connection
+function redirect_login($redirect, $b, $user)
+{
+    if (!is_wp_error($user) && in_array('logement_manager', (array)$user->roles)) {
+        return '/wp-admin';
+    } elseif (!is_wp_error($user) && in_array('subscriber', (array)$user->roles)) {
+        return '/';
+    }
+    return $redirect;
+}
+
+add_filter('login_redirect', 'redirect_login', 10, 3);
+
+//prise en compte de ma nouvelle feuille de style pour page de connexion
+function my_login_stylesheet()
+{
+    wp_enqueue_style('custom-login', get_stylesheet_directory_uri() . '/login/style.css');
+}
+
+add_action('login_enqueue_scripts', 'my_login_stylesheet');
+
+//pour la barre de recherche
+add_filter('query_vars', function ($params) {
+    $params[] = 'ville';
+    $params[] = 'prix_min';
+    $params[] = 'prix_max';
+    $params[] = 'type';
+    return $params;
+});
+
+
+add_action('pre_get_posts', function (WP_Query $query) {
+    if (is_admin() || $query->is_main_query()) {
+        return;
+    }
+
+    
+    if ($query->get('post_type') === 'logement' && !empty(get_query_var('prix_min'))) {
+        $meta_query = $query->get('meta_query', []);
+        $meta_query[] = [
+            'key' => 'hcf-prix_logement',
+            'value' => get_query_var('prix_min'),
+            'compare' => '>=',
+            'type' => 'NUMERIC'
+        ];
+
+        $query->set('meta_query', $meta_query);
+    }
+
+    if ($query->get('post_type') === 'event' && !empty(get_query_var('prix_max'))) {
+        die;
+        $meta_query = $query->get('meta_query', []);
+        $meta_query[] = [
+            'key' => 'hcf-prix_logement',
+            'value' => get_query_var('prix_max'),
+            'compare' => '>=',
+            'type' => 'NUMERIC'
+        ];
+
+        $query->set('meta_query', $meta_query);
+    }
+
+
+    if ($query->get('post_type') === 'logement' && !empty(get_query_var('personne_min'))) {
+        $meta_query = $query->get('meta_query', []);
+        $meta_query[] = [
+            'key' => 'hcf-nb_pers',
+            'value' => get_query_var('personne_min'),
+            'compare' => '>=',
+            'type' => 'NUMERIC'
+        ];
+
+        $query->set('meta_query', $meta_query);
+    }
+
+    if ($query->get('post_type') === 'logement' && !empty(get_query_var('ville'))) {
+        $meta_query = $query->get('meta_query', []);
+        $meta_query[] = [
+            'key' => 'hcf-ville_logement',
+            'value' => get_query_var('ville'),
+            'compare' => '=',
+            'type' => 'TEXT'
+        ];
+
+        $query->set('meta_query', $meta_query);
+    }
+
+    if ($query->get('post_type') === 'logement' && !empty(get_query_var('type'))) {
+        $meta_query = $query->get('meta_query', []);
+        $meta_query[] = [
+            'key' => 'hcf-logement_type',
+            'value' => get_query_var('type'),
+            'compare' => '=',
+            'type' => 'TEXT'
+        ];
+
+        $query->set('meta_query', $meta_query);
+    }
+
+});

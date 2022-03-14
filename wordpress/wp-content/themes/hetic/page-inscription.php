@@ -1,5 +1,4 @@
 <?php get_header();?>
-
 <form action="<?= admin_url('admin-post.php') ?>" method="post">
     <div class="form-group row">
         <label for="inputName" class="col-sm-2 col-form-label">Nom</label>
@@ -54,6 +53,4 @@
         </div>
     </div>
 </form>
-
-
 <?php get_footer();?>
