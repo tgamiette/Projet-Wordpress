@@ -34,11 +34,11 @@
             }
             ?>
             <?php if (is_user_logged_in()) : ?>
-                <li class="nav-item"><a class="c-btn is__brown" href="<?=  wp_logout_url('/')?>">Deconnexion </a></li>
+                <a class="c-btn is__brown" href="<?=  wp_logout_url('/')?>">Deconnexion </a>
             <?php endif ?>
             <?php if (!is_user_logged_in()) : ?>
-                <li class="nav-item"><a class="c-btn is__brown" href="<?= home_url("/inscription") ?>"> S'inscrire</a></li>
-                <li class="nav-item"><a class="c-btn is__brown" href="<?= home_url("/wp-login.php") ?>"> Se connecter </a></li>
+                <a class="c-btn is__brown" href="<?= home_url("/inscription") ?>"> S'inscrire</a>
+                <a class="c-btn is__brown" href="<?= home_url("/wp-login.php") ?>"> Se connecter </a>
             <?php endif; ?>
         </div>
 
